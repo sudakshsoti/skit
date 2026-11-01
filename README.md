@@ -1,6 +1,4 @@
-# soti
-
-My skills for designing and building interfaces with an AI coding agent, plus a few for checking plans and code.
+\My skills for designing and building interfaces with an AI coding agent, plus a few for checking plans and code.
 
 They tell the agent what a careful designer and reviewer would do: settle the decisions before building, pick the right type, cover the error and empty states, write the button labels properly, look at the rendered result, and catch code that a human will struggle to maintain.
 
@@ -63,7 +61,7 @@ Most skills start on their own when your request matches. The ones marked manual
 > "Give this settings app a visual direction. It feels flat and generic."
 
 **`soti-type`** chooses typefaces and pairings, OpenType features and font loading, and checks coverage for other languages and scripts. It handles screen, print and brand work.
-> "Pick a type pairing for a finance dashboard that also has to render Hindi."
+> "Pick a type pairing for a finance dashboard that also has to render Devanagari."
 
 **`soti-interface`** covers how controls, forms, lists, dashboards and settings behave: structure, labels, focus order, hit areas and every field state. It's strict about the screens people forget, like loading, empty, error, partial and offline.
 > "Review this signup form. What states am I missing?"
