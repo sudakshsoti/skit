@@ -1,4 +1,4 @@
-\My skills for designing and building interfaces with an AI coding agent, plus a few for checking plans and code.
+My skills for designing and building interfaces with an AI coding agent, plus a few for checking plans and code.
 
 They tell the agent what a careful designer and reviewer would do: settle the decisions before building, pick the right type, cover the error and empty states, write the button labels properly, look at the rendered result, and catch code that a human will struggle to maintain.
 
