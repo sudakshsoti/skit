@@ -9,5 +9,14 @@
   "homepage": "https://github.com/sudakshsoti/soti-skills",
   "repository": "https://github.com/sudakshsoti/soti-skills",
   "license": "MIT",
-  "keywords": ["design", "ui", "ux", "typography", "accessibility", "ux-writing", "frontend", "code-review"]
+  "keywords": [
+    "design",
+    "ui",
+    "ux",
+    "typography",
+    "accessibility",
+    "ux-writing",
+    "frontend",
+    "code-review"
+  ]
 }
