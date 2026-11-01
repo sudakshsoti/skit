@@ -1,10 +1,10 @@
 # soti
 
-Skills for designing and building interfaces with an AI coding agent, plus a few for keeping plans and code honest.
+My skills for designing and building interfaces with an AI coding agent, plus a few for checking plans and code.
 
 They tell the agent what a careful designer and reviewer would do: settle the decisions before building, pick the right type, cover the error and empty states, write the button labels properly, look at the rendered result, and catch code that a human will struggle to maintain.
 
-Works with Claude Code, Codex, Cursor, and any other agent that reads `SKILL.md` skills.
+They work in Claude Code, Codex, Cursor and any other agent that reads `SKILL.md` skills.
 
 ## Install
 
@@ -17,7 +17,7 @@ Works with Claude Code, Codex, Cursor, and any other agent that reads `SKILL.md`
 
 That installs every skill and the two helper agents.
 
-**Getting updates.** Claude Code doesn't auto-update marketplaces you add yourself. Turn it on once: run `/plugin`, open **Marketplaces**, choose **soti** and enable auto-update. New releases then arrive when Claude Code starts. Without it, run `/plugin marketplace update soti` whenever you want the latest.
+**Getting updates.** Claude Code doesn't auto-update marketplaces you add yourself. To turn it on, run `/plugin`, open **Marketplaces**, choose **soti** and enable auto-update. New releases then arrive when Claude Code starts. Without it, run `/plugin marketplace update soti` whenever you want the latest.
 
 ### Codex, Cursor and other agents
 
@@ -48,64 +48,63 @@ flowchart LR
     V --> S[soti-slop-check<br/>is the code maintainable?]
 ```
 
-Decisions you agree on during a grill are written to `design/decisions.md` in your project. The other skills read that file, so the agent doesn't re-ask or quietly override what you settled. A skill creates the file the first time it needs it.
+Decisions you agree on during a grill are written to `design/decisions.md` in your project. The other skills read that file, so the agent doesn't ask again or override what you settled. A skill creates the file the first time it needs it.
 
 ## The skills
 
-Most skills start on their own when your request matches. The ones marked **manual** only run when you call them: type `/soti:<skill-name>` in Claude Code, or ask for the skill by name elsewhere.
+Most skills start on their own when your request matches. The ones marked manual run only when you call them. In Claude Code, type `/soti:<skill-name>`; elsewhere, ask for the skill by name.
 
 ### Design
 
-**`soti-design-grill`**: an interview, in rounds, that settles what a screen should look like and how it should behave before anything gets built. It sticks to visible decisions (layout, states, copy, motion) and leaves code architecture alone.
+**`soti-design-grill`** interviews you in rounds to settle how a screen should look and behave before anything gets built. It sticks to visible decisions (layout, states, copy, motion) and leaves code architecture alone.
 > "Grill me on the design of the onboarding flow before we build it."
 
-**`soti-art-direction`**: visual direction for a product UI. It first works out what kind of surface this is (a dense tool, a marketing page, a dashboard), then sets colour in OKLCH, hierarchy, responsive layout and CSS tokens to match. Uses Emil Kowalski's animation skill for motion if you have it installed, and its own motion notes otherwise.
+**`soti-art-direction`** sets the visual direction for a product UI. It first works out what kind of surface it's looking at, say a dense tool or a marketing page, then picks colour (in OKLCH), hierarchy, responsive layout and CSS tokens to suit it. For motion it uses Emil Kowalski's animation skill if you have it installed, and its own notes if you don't.
 > "Give this settings app a visual direction. It feels flat and generic."
 
-**`soti-type`**: choosing typefaces and pairings, OpenType features, font loading, and coverage for other languages and scripts, for screen, print or brand work.
+**`soti-type`** chooses typefaces and pairings, OpenType features and font loading, and checks coverage for other languages and scripts. It handles screen, print and brand work.
 > "Pick a type pairing for a finance dashboard that also has to render Hindi."
 
-**`soti-interface`**: the behaviour of controls, forms, lists, dashboards and settings: structure, labels, focus order, hit areas, and every field state. It is strict about the screens people forget: loading, empty, error, partial and offline.
+**`soti-interface`** covers how controls, forms, lists, dashboards and settings behave: structure, labels, focus order, hit areas and every field state. It's strict about the screens people forget, like loading, empty, error, partial and offline.
 > "Review this signup form. What states am I missing?"
 
-**`soti-ux-copy`** (manual): writing and auditing interface text: buttons, form labels, errors, empty states, onboarding, notifications, voice and tone. Comes with templates for the common cases.
+**`soti-ux-copy`** (manual) writes and audits interface text, from button labels and errors to onboarding, notifications and tone of voice. It ships with templates for the common cases.
 > "/soti:soti-ux-copy rewrite the error messages on the payment screen"
 
-**`soti-vibe`**: the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. In Claude Code it hands the build to the `soti-builder` agent and the review to `soti-critic`.
+**`soti-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. In Claude Code it hands the build to the `soti-builder` agent and the review to `soti-critic`.
 > "Add a filter bar to the orders table."
 
 ### Planning and review
 
-**`soti-grilling`**: a general version of the design grill for any plan, decision or idea. It asks a few sharp questions per round, using your agent's question picker when it has one, until nothing important is left assumed. Inspired by Matt Pocock's `grilling` skill.
+**`soti-grilling`** is the design grill for any plan, decision or idea. It asks a few sharp questions per round, using your agent's question picker when it has one, until nothing important is left assumed. Inspired by Matt Pocock's `grilling` skill.
 > "Grill me on this migration plan."
 
-**`soti-plan-check`**: after the agent proposes a non-trivial plan, it critiques the plan against a fixed checklist (unstated assumptions, contradictions, blind spots like rollback and data loss, over-engineering) and revises it.
+**`soti-plan-check`** runs after the agent proposes a non-trivial plan. It critiques the plan against a fixed checklist (unstated assumptions, contradictions, blind spots like rollback and data loss, over-engineering) and revises it.
 > "Check that plan before you start."
 
-**`soti-slop-check`** (manual): reviews AI-written frontend code for whether a person can maintain it: duplication, needless abstractions, vague names, silent failures, and drift between sessions.
+**`soti-slop-check`** (manual) reviews AI-written frontend code for whether a person could maintain it. It looks for duplication, needless abstractions, vague names, silent failures and drift between sessions.
 > "/soti:soti-slop-check src/components"
 
-**`soti-autopilot`**: works through a markdown checklist plan without stopping to ask, ticking items off, verifying each one and committing as it goes. It uses subagents where your tool has them.
+**`soti-autopilot`** works through a markdown checklist plan without stopping to ask. It verifies each item, ticks it off and commits before moving on, and uses subagents where your tool has them.
 > "Run plans/dark-mode.md on autopilot."
 
 ### Session helpers
 
-**`soti-handoff`** (manual): writes a structured handoff (decisions, progress, changed files, next steps) so the next session can pick up where this one stopped.
+**`soti-handoff`** (manual) writes a structured handoff (decisions, progress, changed files, next steps) so the next session can pick up where this one stopped.
 > "/soti:soti-handoff"
 
-**`soti-bro`** (manual): restates the agent's last message in plain words, for when the answer was correct but dense.
+**`soti-bro`** (manual) restates the agent's last message in plain words, for when the answer was right but hard to read.
 > "/soti:soti-bro"
 
 ## Agents (Claude Code)
 
-- **soti-builder** implements an approved UI plan or a small tweak in React, shadcn/ui, Tailwind CSS or plain HTML, and returns screenshots as evidence.
-- **soti-critic** is a read-only reviewer: it looks at screenshots and the implemented UI and returns ranked findings with a ship-or-fix verdict.
+`soti-builder` implements an approved UI plan or a small tweak in React, shadcn/ui, Tailwind CSS or plain HTML, and sends back screenshots. `soti-critic` reviews those screenshots and the code without editing anything, and returns ranked findings with a ship-or-fix verdict.
 
-`soti-vibe` uses both. You can also call them directly.
+`soti-vibe` uses both, and you can call either one directly.
 
 ## Feedback
 
-Bug reports and suggestions are welcome as [issues](https://github.com/sudakshsoti/soti-skills/issues). Pull requests are by invitation: open an issue first.
+Bug reports and suggestions are welcome as [issues](https://github.com/sudakshsoti/soti-skills/issues). Pull requests are by invitation, so please open an issue first.
 
 ## Licence
 
