@@ -1,0 +1,13 @@
+{
+  "name": "soti",
+  "version": "1.0.0",
+  "description": "Design and development skills: interface states, art direction, type, UX copy, design grilling, a rendered build-review loop, and plan and code checks.",
+  "author": {
+    "name": "Sudaksh Soti",
+    "url": "https://github.com/sudakshsoti"
+  },
+  "homepage": "https://github.com/sudakshsoti/soti-skills",
+  "repository": "https://github.com/sudakshsoti/soti-skills",
+  "license": "MIT",
+  "keywords": ["design", "ui", "ux", "typography", "accessibility", "ux-writing", "frontend", "code-review"]
+}

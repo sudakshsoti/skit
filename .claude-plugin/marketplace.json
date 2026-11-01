@@ -1,0 +1,18 @@
+{
+  "name": "soti",
+  "owner": {
+    "name": "Sudaksh Soti",
+    "url": "https://github.com/sudakshsoti"
+  },
+  "metadata": {
+    "description": "Sudaksh Soti's design and development skills for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "soti",
+      "source": "./",
+      "description": "Design and development skills: interface states, art direction, type, UX copy, design grilling, a rendered build-review loop, and plan and code checks.",
+      "category": "design"
+    }
+  ]
+}
