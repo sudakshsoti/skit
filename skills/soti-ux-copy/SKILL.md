@@ -1,7 +1,6 @@
 ---
 name: soti-ux-copy
 description: "Use for writing, editing, or auditing interface microcopy: controls, forms, errors, onboarding, empty states, notifications, voice, tone. Not for long-form prose, essays, or visual and type decisions."
-disable-model-invocation: true
 ---
 
 # UX copy

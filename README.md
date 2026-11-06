@@ -66,10 +66,10 @@ Most skills start on their own when your request matches. The ones marked manual
 **`soti-interface`** covers how controls, forms, lists, dashboards and settings behave: structure, labels, focus order, hit areas and every field state. It's strict about the screens people forget, like loading, empty, error, partial and offline.
 > "Review this signup form. What states am I missing?"
 
-**`soti-ux-copy`** (manual) writes and audits interface text, from button labels and errors to onboarding, notifications and tone of voice. It ships with templates for the common cases.
-> "/soti:soti-ux-copy rewrite the error messages on the payment screen"
+**`soti-ux-copy`** writes and audits interface text, from button labels and errors to onboarding, notifications and tone of voice. It ships with templates for the common cases.
+> "Rewrite the error messages on the payment screen"
 
-**`soti-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. In Claude Code it hands the build to the `soti-builder` agent and the review to `soti-critic`.
+**`soti-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. In Claude Code it hands the build to the `soti-builder` agent and the review to `soti-critic`. Without those agents it does the same work in the main session and a fresh subagent, using the critic rules it carries in `references/critic.md`.
 > "Add a filter bar to the orders table."
 
 ### Planning and review
@@ -88,8 +88,8 @@ Most skills start on their own when your request matches. The ones marked manual
 
 ### Session helpers
 
-**`soti-handoff`** (manual) writes a structured handoff (decisions, progress, changed files, next steps) so the next session can pick up where this one stopped.
-> "/soti:soti-handoff"
+**`soti-handoff`** writes a structured handoff (decisions, progress, changed files, next steps) so the next session can pick up where this one stopped.
+> "Write a handoff for the next session."
 
 **`soti-bro`** (manual) restates the agent's last message in plain words, for when the answer was right but hard to read.
 > "/soti:soti-bro"

@@ -12,6 +12,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: python3 scripts/lint.py
+      - run: python3 scripts/test-lint.py
       - name: JSON manifests parse
         run: |
           python3 -m json.tool .claude-plugin/plugin.json >/dev/null

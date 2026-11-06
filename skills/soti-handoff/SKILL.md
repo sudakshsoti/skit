@@ -1,7 +1,6 @@
 ---
 name: soti-handoff
 description: "Use when ending or pausing a session to write a structured handoff of decisions, progress, changes, and next steps for the next session. Not for issue-tracker upkeep or personal task capture."
-disable-model-invocation: true
 ---
 
 # Handoff

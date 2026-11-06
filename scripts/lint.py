@@ -13,6 +13,11 @@ Rules:
 - No file contains a personal detail from BLOCKLIST, or harness-local syntax
   that only works on the author's machine.
 - README.md documents every skill on disk.
+- `soti-ux-copy` and `soti-handoff` start automatically: other skills hand work
+  to them, and a manual-only skill cannot be loaded by the model.
+- No skill points into the agents folder. A skill must work when only skills
+  are installed, so the rules an agent carries are also shipped in the skill:
+  `soti-vibe/references/critic.md` must match the body of `agents/soti-critic.md`.
 
 Exit 1 with one line per problem; print "ok" otherwise.
 """
@@ -23,8 +28,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKILLS = ROOT / "skills"
-AGENTS = ROOT / "agents"
+
+# Skills other skills depend on, so the model must be able to start them.
+AUTO_START = ("soti-ux-copy", "soti-handoff")
+AGENT_PATH_RE = re.compile(r"(?:\.\./)+agents/|`agents/")
 
 BLOCKLIST = [
     r"\bSudaksh\b(?! Soti\b)",  # the author name is allowed only in full, in metadata
@@ -54,7 +61,13 @@ def frontmatter(text: str) -> dict[str, str]:
     return out
 
 
-def main() -> int:
+def body(text: str) -> str:
+    return re.sub(r"^---\n.*?\n---\n", "", text, count=1, flags=re.S).strip()
+
+
+def lint(root: Path) -> list[str]:
+    SKILLS = root / "skills"
+    AGENTS = root / "agents"
     problems: list[str] = []
     skills = sorted(p.name for p in SKILLS.iterdir() if p.is_dir())
     agents = sorted(p.stem for p in AGENTS.glob("*.md"))
@@ -63,28 +76,28 @@ def main() -> int:
     for name in skills:
         f = SKILLS / name / "SKILL.md"
         if not f.exists():
-            problems.append(f"{f.relative_to(ROOT)}: missing")
+            problems.append(f"{f.relative_to(root)}: missing")
             continue
         fm = frontmatter(f.read_text())
         if fm.get("name") != name:
-            problems.append(f"{f.relative_to(ROOT)}: name {fm.get('name')!r} != directory {name!r}")
+            problems.append(f"{f.relative_to(root)}: name {fm.get('name')!r} != directory {name!r}")
         if not NAME_RE.match(name) or "claude" in name or "anthropic" in name:
-            problems.append(f"{f.relative_to(ROOT)}: bad skill name {name!r}")
+            problems.append(f"{f.relative_to(root)}: bad skill name {name!r}")
         desc = fm.get("description", "")
         if not desc:
-            problems.append(f"{f.relative_to(ROOT)}: missing description")
+            problems.append(f"{f.relative_to(root)}: missing description")
         elif len(desc) > 1024:
-            problems.append(f"{f.relative_to(ROOT)}: description is {len(desc)} chars (max 1024)")
+            problems.append(f"{f.relative_to(root)}: description is {len(desc)} chars (max 1024)")
 
     for name in agents:
         f = AGENTS / f"{name}.md"
         fm = frontmatter(f.read_text())
         if fm.get("name") != name or not NAME_RE.match(name):
-            problems.append(f"{f.relative_to(ROOT)}: agent name {fm.get('name')!r} must equal {name!r} and start with soti-")
+            problems.append(f"{f.relative_to(root)}: agent name {fm.get('name')!r} must equal {name!r} and start with soti-")
 
     for f in sorted(list(SKILLS.rglob("*.md")) + list(AGENTS.glob("*.md"))):
         text = f.read_text()
-        rel = f.relative_to(ROOT)
+        rel = f.relative_to(root)
         for i, line in enumerate(text.splitlines(), 1):
             for rx in BLOCK_RE:
                 if rx.search(line):
@@ -99,11 +112,36 @@ def main() -> int:
                 if not any(c.resolve().exists() for c in candidates):
                     problems.append(f"{rel}:{i}: path `{path}` does not exist")
 
-    readme = (ROOT / "README.md").read_text() if (ROOT / "README.md").exists() else ""
+    readme = (root / "README.md").read_text() if (root / "README.md").exists() else ""
     for name in skills:
         if f"`{name}`" not in readme:
             problems.append(f"README.md: skill `{name}` is not documented")
 
+    for name in AUTO_START:
+        f = SKILLS / name / "SKILL.md"
+        if f.exists() and "disable-model-invocation" in frontmatter(f.read_text()):
+            problems.append(f"{f.relative_to(root)}: must start automatically (remove disable-model-invocation)")
+
+    for f in sorted(SKILLS.rglob("*.md")):
+        for i, line in enumerate(f.read_text().splitlines(), 1):
+            if AGENT_PATH_RE.search(line):
+                problems.append(f"{f.relative_to(root)}:{i}: points into the agents folder, which a skills-only install lacks")
+
+    skill_critic = SKILLS / "soti-vibe" / "references" / "critic.md"
+    agent_critic = AGENTS / "soti-critic.md"
+    if skill_critic.exists() and agent_critic.exists():
+        if body(skill_critic.read_text()) != body(agent_critic.read_text()):
+            problems.append(
+                f"{skill_critic.relative_to(root)}: critic rules differ from {agent_critic.relative_to(root)}; keep the two identical"
+            )
+    elif (SKILLS / "soti-vibe").exists():
+        problems.append("skills/soti-vibe/references/critic.md: missing (soti-vibe must carry the critic rules)")
+
+    return problems
+
+
+def main() -> int:
+    problems = lint(ROOT)
     for p in problems:
         print(p)
     if not problems:
