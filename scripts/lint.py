@@ -26,6 +26,7 @@ Exit 1 with one line per problem; print "ok" otherwise.
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -151,6 +152,20 @@ def lint(root: Path) -> list[str]:
             )
     elif (SKILLS / "skit-vibe").exists():
         problems.append("skills/skit-vibe/references/critic.md: missing (skit-vibe must carry the critic rules)")
+
+    # No version anywhere: Claude Code then uses the commit SHA, so every push
+    # reaches installed plugins. A pinned version would freeze users on a cached copy.
+    manifests = root / ".claude-plugin"
+    for fname in ("plugin.json", "marketplace.json"):
+        f = manifests / fname
+        if not f.exists():
+            continue
+        data = json.loads(f.read_text())
+        entries = [data] + [e for e in data.get("plugins", []) if isinstance(e, dict)]
+        if any("version" in e for e in entries):
+            problems.append(
+                f".claude-plugin/{fname}: remove `version`; without one the plugin follows every commit"
+            )
 
     return problems
 

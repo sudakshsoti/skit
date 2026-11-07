@@ -25,6 +25,7 @@ class LintTest(unittest.TestCase):
         for part in ("skills", "agents"):
             shutil.copytree(REPO / part, self.tmp / part)
         shutil.copy(REPO / "README.md", self.tmp / "README.md")
+        shutil.copytree(REPO / ".claude-plugin", self.tmp / ".claude-plugin")
 
     def problems(self):
         return lint.lint(self.tmp)
@@ -74,6 +75,27 @@ class LintTest(unittest.TestCase):
         self.assertEqual(plugin["name"], "skit")
         self.assertEqual(market["name"], "skit")
         self.assertEqual([p["name"] for p in market["plugins"]], ["skit"])
+
+    def set_version(self, name, version):
+        import json
+        f = self.tmp / ".claude-plugin" / name
+        data = json.loads(f.read_text())
+        if name == "marketplace.json":
+            data["plugins"][0]["version"] = version
+        else:
+            data["version"] = version
+        f.write_text(json.dumps(data))
+
+    def test_plugin_declares_no_version_so_it_tracks_commits(self):
+        self.assertNotIn("version", " ".join(self.problems()))
+
+    def test_lint_rejects_a_version_in_plugin_json(self):
+        self.set_version("plugin.json", "1.0.2")
+        self.assertTrue(any("plugin.json" in p and "version" in p for p in self.problems()))
+
+    def test_lint_rejects_a_version_in_marketplace_json(self):
+        self.set_version("marketplace.json", "1.0.2")
+        self.assertTrue(any("marketplace.json" in p and "version" in p for p in self.problems()))
 
     def test_vibe_ships_the_critic_rules_in_the_skill(self):
         self.assertTrue((REPO / "skills" / "skit-vibe" / "references" / "critic.md").is_file())
