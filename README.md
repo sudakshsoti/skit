@@ -51,7 +51,7 @@ flowchart LR
     V --> S[skit-slop-check<br/>is the code maintainable?]
 ```
 
-Decisions you agree on during a grill are written to `design/decisions.md` in your project. The other skills read that file, so the agent doesn't ask again or override what you settled. A skill creates the file the first time it needs it.
+Decisions you agree on during a grill are written to `design/decisions.md` in your project. The other skills read that file, so the agent doesn't ask again or override what you settled. The file opens with three plain sentences on what the product is, who it's for and how it should feel, so you say that once. A skill creates the file the first time it needs it. If a skill keeps flagging something you chose on purpose, such as your brand font on the overused list, tell the grill why: it records that as an exception, and the skills stop flagging that one thing while still flagging the rest.
 
 ## The skills
 
@@ -77,8 +77,11 @@ Most skills start on their own when your request matches. The ones marked manual
 **`skit-ux-copy`** writes and audits interface text, from button labels and errors to onboarding, notifications and tone of voice. It ships with templates for the common cases.
 > "Rewrite the error messages on the payment screen"
 
-**`skit-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. In Claude Code it hands the build to the `skit-builder` agent and the review to `skit-critic`. Without those agents it does the same work in the main session and a fresh subagent, using the critic rules it carries in `references/critic.md`.
+**`skit-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. If Impeccable's detector is installed in the project, it runs the detector's command line as an automatic check and hands the findings to the reviewer; if not, the report says the audit didn't run. In Claude Code it hands the build to the `skit-builder` agent and the review to `skit-critic`. Without those agents it does the same work in the main session and a fresh subagent, using the critic rules it carries in `references/critic.md`.
 > "Add a filter bar to the orders table."
+
+**`skit-polish`** (manual) is a finishing pass for a page that is right in direction but still feels unfinished. It checks the small details, such as hover states that shift the layout, missing press feedback and straight quotes in UI text, and points to the skill that owns each rule rather than repeating it.
+> "/skit:skit-polish the pricing page"
 
 ### Planning and review
 

@@ -53,6 +53,17 @@ This applies to any reference: a named app, a site, a pasted screenshot, a compe
 
 Append to `design/decisions.md` at the repo root, creating it if absent, the moment a decision settles. `skit-vibe`, `skit-interface` and the `skit-builder` agent read this file and treat `[stated]` lines as settled, so it is the hand-off from this grill to the build.
 
+**The file opens with an About block**: three plain sentences in the user's own words saying what the product is, who it's for and how it should feel. No labels, no tags, no `[stated]` markers; it reads like a person wrote it:
+
+```markdown
+## About
+A budgeting app for freelancers who get paid irregularly.
+They check it on their phone between jobs, usually in a hurry.
+It should feel calm and a little warm, like a good notebook, not a bank.
+```
+
+Write it as soon as purpose, audience and feel settle (they sit near the root of the tree), and rewrite it when the user changes any of them. Every sentence comes from something the user said; a sentence you would have to infer becomes a question instead. `skit-visual-design` reads the block in place of asking for subject and audience. Decision lines go below it.
+
 Write each line as it settles, not at the end of the session. The user contradicts themselves often, and a file written only at the end loses the earlier position that the contradiction is worth seeing against.
 
 Tag every line with where it came from:
@@ -63,6 +74,14 @@ Tag every line with where it came from:
 ```
 
 **An inference never settles a node.** If an answer is derived rather than said, it does not close and the frontier does not advance past it. It becomes a question in the next round with the inference as the recommended answer. Skipping the question because you are confident is the single failure that costs the most: the wrong turn is silent, and by the time the user sees the result it is four decisions back.
+
+**An exception carries its reason.** When the user wants to keep something a tell or ban would flag (a brand font on `skit-type`'s overused list, say), ask why before writing anything, then record it as an ordinary stated line naming the one thing it allows:
+
+```markdown
+- [stated] Inter is fine here: it's our brand font.
+```
+
+`skit-type` and the Critic stop flagging exactly that thing and keep flagging the rest of the rule, so name the specific face, colour or element, never the whole rule. An exception is always `[stated]`; until the user gives the reason, it stays a question in the next round.
 
 **Surface contradictions out loud.** When a new answer conflicts with a settled line, quote the line, say what conflicts, and ask which holds. Never silently overwrite, and never silently keep the old one:
 

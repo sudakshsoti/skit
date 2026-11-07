@@ -113,6 +113,14 @@ Accessible copy works for everyone, including users of assistive technology. Cor
 
 See references/accessibility-guidelines.md for the full guide (WCAG mapping, screen-reader behavior, and pattern examples).
 
+## Tells in copy
+
+A tell is wording that reads as generated rather than written. Flag these in every audit as `MEDIUM` voice findings, and rewrite them as a plain statement of what the thing does. The ideas come from Impeccable's catalogue.
+
+- **Forced contrast**: knocking down a claim nobody made to raise the real one, such as "Not a tool. A platform." Say what it is.
+- **"Theater"**: calling a process or a rival's feature "theater" (security theater, productivity theater) to dismiss it. Name the actual weakness.
+- **Em-dash overuse**: em dashes standing in for commas, colons and full stops, especially more than one in a short string. Use the plainer mark.
+
 ## Reporting
 
 When auditing copy (step 3 above), report findings with a fixed scaffold:
