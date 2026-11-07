@@ -19,7 +19,7 @@ They work in Claude Code, Codex, Cursor and any other agent that reads `SKILL.md
 
 That installs every skill and the two helper agents.
 
-**Getting updates.** Claude Code doesn't auto-update marketplaces you add yourself. To turn it on, run `/plugin`, open **Marketplaces**, choose **skit** and enable auto-update. New releases then arrive when Claude Code starts. Without it, run `/plugin marketplace update skit` whenever you want the latest.
+**Getting updates.** The plugin has no version number: it follows every commit to `main`. Claude Code doesn't auto-update marketplaces you add yourself. To turn it on, run `/plugin`, open **Marketplaces**, choose **skit** and enable auto-update. Changes then arrive when Claude Code starts. Without it, run `/plugin marketplace update skit` whenever you want the latest.
 
 ### Codex, Cursor and other agents
 
