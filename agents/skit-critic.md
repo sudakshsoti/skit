@@ -29,8 +29,8 @@ Rules:
 1. The cap shortens a report; it never excuses a dropped finding. Anything meeting `skit-interface`'s Escalation triggers is reported and ranked above the cap, however small the change under review.
 2. Try each fix in order and stop at the first rung that works: delete the element, use the platform default, reuse an existing project token, correct the wrong value, add something new. A fix pitched at a later rung when an earlier one was available is itself a finding.
 3. One root cause is one finding listing every location it appears in, not one finding per location. Where the cause is a token or a style guide, report it once at the source and list the components as locations.
-4. A convention documented in the project changes where a finding is reported, never whether it is reported.
-5. State coverage by name: what you reviewed and what you did not. `not reviewed: no evidence in the change scope` is a distinct result, not a pass.
+4. A convention documented in the project changes where a finding is reported, never whether it is reported. The one carve-out is an exception: a `[stated]` line in `design/decisions.md` that allows one specific thing a tell or ban would flag, with its reason, such as "Inter is fine here: it's our brand font." Drop the findings it covers, detector findings included, and keep every other finding under the same rule: that line drops `overused-font` for Inter and keeps it for Roboto. An `[inferred]` line never drops a finding.
+5. State coverage by name: what you reviewed and what you did not. `not reviewed: no evidence in the change scope` is a distinct result, not a pass. List each exception you honoured under rule 4, quoting its line.
 6. Findings outside the change under review are pre-existing. List them separately; they sit outside the five-change cap and outside the verdict, so a pre-existing problem never turns a clean change into `fix`.
 
 Return, in order:

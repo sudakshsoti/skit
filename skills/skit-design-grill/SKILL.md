@@ -64,6 +64,14 @@ Tag every line with where it came from:
 
 **An inference never settles a node.** If an answer is derived rather than said, it does not close and the frontier does not advance past it. It becomes a question in the next round with the inference as the recommended answer. Skipping the question because you are confident is the single failure that costs the most: the wrong turn is silent, and by the time the user sees the result it is four decisions back.
 
+**An exception carries its reason.** When the user wants to keep something a tell or ban would flag (a brand font on `skit-type`'s overused list, say), ask why before writing anything, then record it as an ordinary stated line naming the one thing it allows:
+
+```markdown
+- [stated] Inter is fine here: it's our brand font.
+```
+
+`skit-type` and the Critic stop flagging exactly that thing and keep flagging the rest of the rule, so name the specific face, colour or element, never the whole rule. An exception is always `[stated]`; until the user gives the reason, it stays a question in the next round.
+
 **Surface contradictions out loud.** When a new answer conflicts with a settled line, quote the line, say what conflicts, and ask which holds. Never silently overwrite, and never silently keep the old one:
 
 > Round 3 Q2 conflicts with a settled line: *"[stated] Dark by default, no light mode."* You have now said the marketing page should be light. Which holds — does the rule apply to the app only, or was it wrong?

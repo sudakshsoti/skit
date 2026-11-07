@@ -39,7 +39,7 @@ The project-local audit is Impeccable's detector, used through its command line 
 2. When a dev server is running, also scan the page URL twice: `--viewport 390x844` for phone width, where sideways overflow shows, and `--viewport 1440x900` for desktop.
 3. Read each exit code. `0` is clean and `2` means findings; both hand the full JSON from standard output to the Critic, advisory entries included. `1` means at least one target could not be scanned, even when other targets produced findings: report that scan as `audit didn't run` with the reason from standard error, and still pass on any JSON it printed. When npx says the package is missing, every scan is `audit didn't run`, and the build carries on.
 
-The audit is done when each scan has one result: clean, findings passed to the Critic, or `audit didn't run`. A scan that exits `1` is never reported as clean.
+The audit is done when each scan has one result: clean, findings passed to the Critic, or `audit didn't run`. A scan that exits `1` is never reported as clean. Leave the detector's own ignore config alone: the Critic drops the findings a stated exception in `design/decisions.md` covers.
 
 ## 4. Final report
 
