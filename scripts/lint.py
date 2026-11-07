@@ -3,21 +3,21 @@
 
 Rules:
 - Each skills/<dir>/SKILL.md has frontmatter whose `name` equals <dir>, is
-  lowercase kebab-case, starts with `soti-`, and contains neither "claude" nor
+  lowercase kebab-case, starts with `skit-`, and contains neither "claude" nor
   "anthropic". `description` is present and at most 1024 characters.
 - Each agents/<file>.md has frontmatter whose `name` equals the file stem and
-  starts with `soti-`.
-- Every backticked `soti-*` name in a skill or agent resolves to a skill or
+  starts with `skit-`.
+- Every backticked `skit-*` name in a skill or agent resolves to a skill or
   agent in this repo, so nothing points at a skill a user won't have.
 - Relative links and `references/...` paths inside a skill resolve.
 - No file contains a personal detail from BLOCKLIST, or harness-local syntax
   that only works on the author's machine.
 - README.md documents every skill on disk.
-- `soti-ux-copy` and `soti-handoff` start automatically: other skills hand work
+- `skit-ux-copy` and `skit-handoff` start automatically: other skills hand work
   to them, and a manual-only skill cannot be loaded by the model.
 - No skill points into the agents folder. A skill must work when only skills
   are installed, so the rules an agent carries are also shipped in the skill:
-  `soti-vibe/references/critic.md` must match the body of `agents/soti-critic.md`.
+  `skit-vibe/references/critic.md` must match the body of `agents/skit-critic.md`.
 
 Exit 1 with one line per problem; print "ok" otherwise.
 """
@@ -30,7 +30,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 # Skills other skills depend on, so the model must be able to start them.
-AUTO_START = ("soti-ux-copy", "soti-handoff")
+AUTO_START = ("skit-ux-copy", "skit-handoff")
 AGENT_PATH_RE = re.compile(r"(?:\.\./)+agents/|`agents/")
 
 BLOCKLIST = [
@@ -44,8 +44,8 @@ BLOCKLIST = [
     r"\b[0-9a-f]{40}\b",  # commit hashes
 ]
 BLOCK_RE = [re.compile(p) for p in BLOCKLIST]
-NAME_RE = re.compile(r"^soti-[a-z0-9]+(-[a-z0-9]+)*$")
-REF_RE = re.compile(r"`(soti-[a-z0-9-]+)`")
+NAME_RE = re.compile(r"^skit-[a-z0-9]+(-[a-z0-9]+)*$")
+REF_RE = re.compile(r"`(skit-[a-z0-9-]+)`")
 PATH_RE = re.compile(r"`((?:\.\./)*(?:references|templates|examples|agents)/[A-Za-z0-9_./-]+\.md)`")
 
 
@@ -93,7 +93,7 @@ def lint(root: Path) -> list[str]:
         f = AGENTS / f"{name}.md"
         fm = frontmatter(f.read_text())
         if fm.get("name") != name or not NAME_RE.match(name):
-            problems.append(f"{f.relative_to(root)}: agent name {fm.get('name')!r} must equal {name!r} and start with soti-")
+            problems.append(f"{f.relative_to(root)}: agent name {fm.get('name')!r} must equal {name!r} and start with skit-")
 
     for f in sorted(list(SKILLS.rglob("*.md")) + list(AGENTS.glob("*.md"))):
         text = f.read_text()
@@ -127,15 +127,15 @@ def lint(root: Path) -> list[str]:
             if AGENT_PATH_RE.search(line):
                 problems.append(f"{f.relative_to(root)}:{i}: points into the agents folder, which a skills-only install lacks")
 
-    skill_critic = SKILLS / "soti-vibe" / "references" / "critic.md"
-    agent_critic = AGENTS / "soti-critic.md"
+    skill_critic = SKILLS / "skit-vibe" / "references" / "critic.md"
+    agent_critic = AGENTS / "skit-critic.md"
     if skill_critic.exists() and agent_critic.exists():
         if body(skill_critic.read_text()) != body(agent_critic.read_text()):
             problems.append(
                 f"{skill_critic.relative_to(root)}: critic rules differ from {agent_critic.relative_to(root)}; keep the two identical"
             )
-    elif (SKILLS / "soti-vibe").exists():
-        problems.append("skills/soti-vibe/references/critic.md: missing (soti-vibe must carry the critic rules)")
+    elif (SKILLS / "skit-vibe").exists():
+        problems.append("skills/skit-vibe/references/critic.md: missing (skit-vibe must carry the critic rules)")
 
     return problems
 

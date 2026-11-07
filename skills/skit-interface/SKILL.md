@@ -1,11 +1,11 @@
 ---
-name: soti-interface
-description: "Use when designing or reviewing interactive controls, forms, lists, dashboards, settings, documentation, or non-happy-path screen states: structure, labels, focus, hit areas, field states. Not for marketing or brand pages, type scale (soti-type), or visual styling (soti-art-direction)."
+name: skit-interface
+description: "Use when designing or reviewing interactive controls, forms, lists, dashboards, settings, documentation, or non-happy-path screen states: structure, labels, focus, hit areas, field states. Not for marketing or brand pages, type scale (skit-type), or visual styling (skit-art-direction)."
 ---
 
-# soti-interface
+# skit-interface
 
-Styling of a control comes from the project's `design/decisions.md` (create it when missing; `soti-design-grill` fills it); this skill owns structure, behaviour, states and the accessibility thresholds below.
+Styling of a control comes from the project's `design/decisions.md` (create it when missing; `skit-design-grill` fills it); this skill owns structure, behaviour, states and the accessibility thresholds below.
 
 ## When to invoke
 
@@ -52,7 +52,7 @@ Read only the file for the branch the surface reaches, before building or review
 
 ## Escalation triggers
 
-These are review thresholds this skill owns — `soti-vibe` and other review flows defer to this list rather than re-deriving it. Any one of them is a blocker on sight, whatever else the change gets right:
+These are review thresholds this skill owns — `skit-vibe` and other review flows defer to this list rather than re-deriving it. Any one of them is a blocker on sight, whatever else the change gets right:
 
 - An interactive control with no accessible name.
 - A keyboard-reachable control with no visible focus indicator.

@@ -1,11 +1,11 @@
 ---
-name: soti-design-grill
+name: skit-design-grill
 description: "Run a round-based interview to settle visual and behavioural interface decisions, recording agreed design decisions while excluding implementation architecture."
 ---
 
 # Design grill
 
-Load the `soti-grilling` skill and run its loop unchanged: the decision tree, the frontier, rounds of questions each carrying a recommended answer (through the question tool when there is one), wait, recompute. If that skill is not installed, run the same loop from this summary.
+Load the `skit-grilling` skill and run its loop unchanged: the decision tree, the frontier, rounds of questions each carrying a recommended answer (through the question tool when there is one), wait, recompute. If that skill is not installed, run the same loop from this summary.
 
 The four rules below are what make it a design grill rather than a technical one. Nothing here replaces the loop; it constrains what the tree branches on, what you look at, and what you write down.
 
@@ -51,7 +51,7 @@ This applies to any reference: a named app, a site, a pasted screenshot, a compe
 
 ## Write design/decisions.md as each decision settles
 
-Append to `design/decisions.md` at the repo root, creating it if absent, the moment a decision settles. `soti-vibe`, `soti-interface` and the `soti-builder` agent read this file and treat `[stated]` lines as settled, so it is the hand-off from this grill to the build.
+Append to `design/decisions.md` at the repo root, creating it if absent, the moment a decision settles. `skit-vibe`, `skit-interface` and the `skit-builder` agent read this file and treat `[stated]` lines as settled, so it is the hand-off from this grill to the build.
 
 Write each line as it settles, not at the end of the session. The user contradicts themselves often, and a file written only at the end loses the earlier position that the contradiction is worth seeing against.
 
