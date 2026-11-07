@@ -60,13 +60,19 @@ class LintTest(unittest.TestCase):
         (self.tmp / "skills" / "skit-bro").rename(self.tmp / "skills" / "soti-bro")
         f = self.tmp / "skills" / "soti-bro" / "SKILL.md"
         f.write_text(f.read_text().replace("name: skit-bro", "name: soti-bro"))
-        self.assertTrue(any("soti-bro" in p and "bad skill name" in p for p in self.problems()))
+        self.assertTrue(any("soti-bro" in p and "personal prefix" in p and "agent-config" in p for p in self.problems()))
 
     def test_lint_requires_the_skit_prefix_on_an_agent(self):
         (self.tmp / "agents" / "skit-builder.md").rename(self.tmp / "agents" / "soti-builder.md")
         f = self.tmp / "agents" / "soti-builder.md"
         f.write_text(f.read_text().replace("name: skit-builder", "name: soti-builder"))
-        self.assertTrue(any("soti-builder" in p and "start with skit-" in p for p in self.problems()))
+        self.assertTrue(any("soti-builder" in p and "personal prefix" in p for p in self.problems()))
+
+    def test_a_skill_with_another_wrong_prefix_still_gets_the_generic_name_error(self):
+        (self.tmp / "skills" / "skit-bro").rename(self.tmp / "skills" / "bro")
+        f = self.tmp / "skills" / "bro" / "SKILL.md"
+        f.write_text(f.read_text().replace("name: skit-bro", "name: bro"))
+        self.assertTrue(any("bad skill name" in p and "'bro'" in p for p in self.problems()))
 
     def test_plugin_and_marketplace_are_named_skit(self):
         import json

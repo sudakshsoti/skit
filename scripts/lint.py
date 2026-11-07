@@ -5,6 +5,8 @@ Rules:
 - Each skills/<dir>/SKILL.md has frontmatter whose `name` equals <dir>, is
   lowercase kebab-case, starts with `skit-`, and contains neither "claude" nor
   "anthropic". `description` is present and at most 1024 characters.
+- No skill or agent here starts with `soti-`: that prefix is personal and lives
+  in the owner's agent-config repo, so a `soti-` name fails with its own message.
 - Each agents/<file>.md has frontmatter whose `name` equals the file stem and
   starts with `skit-`.
 - Every backticked `skit-*` name in a skill or agent resolves to a skill or
@@ -42,6 +44,8 @@ ROUTES = {
     "skit-grilling": "skit-design-grill",
     "skit-design-grill": "skit-grilling",
 }
+# Personal skills live in the owner's agent-config repo; shared ones start `skit-`.
+PERSONAL_PREFIX = "soti-"
 AGENT_PATH_RE = re.compile(r"(?:\.\./)+agents/|`agents/")
 
 BLOCKLIST = [
@@ -92,7 +96,9 @@ def lint(root: Path) -> list[str]:
         fm = frontmatter(f.read_text())
         if fm.get("name") != name:
             problems.append(f"{f.relative_to(root)}: name {fm.get('name')!r} != directory {name!r}")
-        if not NAME_RE.match(name) or "claude" in name or "anthropic" in name:
+        if name.startswith(PERSONAL_PREFIX):
+            problems.append(f"{f.relative_to(root)}: {name!r} uses the personal prefix {PERSONAL_PREFIX!r}; personal skills live in agent-config, shared skills here start with skit-")
+        elif not NAME_RE.match(name) or "claude" in name or "anthropic" in name:
             problems.append(f"{f.relative_to(root)}: bad skill name {name!r}")
         desc = fm.get("description", "")
         if not desc:
@@ -103,7 +109,9 @@ def lint(root: Path) -> list[str]:
     for name in agents:
         f = AGENTS / f"{name}.md"
         fm = frontmatter(f.read_text())
-        if fm.get("name") != name or not NAME_RE.match(name):
+        if name.startswith(PERSONAL_PREFIX):
+            problems.append(f"{f.relative_to(root)}: {name!r} uses the personal prefix {PERSONAL_PREFIX!r}; personal agents live in agent-config, shared agents here start with skit-")
+        elif fm.get("name") != name or not NAME_RE.match(name):
             problems.append(f"{f.relative_to(root)}: agent name {fm.get('name')!r} must equal {name!r} and start with skit-")
 
     for f in sorted(list(SKILLS.rglob("*.md")) + list(AGENTS.glob("*.md"))):
