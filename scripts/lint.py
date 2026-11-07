@@ -23,6 +23,8 @@ Rules:
 - No skill points into the agents folder. A skill must work when only skills
   are installed, so the rules an agent carries are also shipped in the skill:
   `skit-vibe/references/critic.md` must match the body of `agents/skit-critic.md`.
+- `skit-vibe` carries a move table: each move appears once and names a skill
+  that exists here, so a request phrased as a move loads one owner.
 
 Exit 1 with one line per problem; print "ok" otherwise.
 """
@@ -78,6 +80,33 @@ def frontmatter(text: str) -> dict[str, str]:
 
 def body(text: str) -> str:
     return re.sub(r"^---\n.*?\n---\n", "", text, count=1, flags=re.S).strip()
+
+
+MOVE_HEADER_RE = re.compile(r"^\|\s*Move\s*\|\s*Owner\s*\|\s*$")
+
+
+def lint_moves(vibe: Path, root: Path, skills: set[str]) -> list[str]:
+    """Each move in skit-vibe's move table appears once and names a real skill."""
+    rel = vibe.relative_to(root)
+    lines = [line.strip() for line in vibe.read_text().splitlines()]
+    start = next((i for i, line in enumerate(lines) if MOVE_HEADER_RE.match(line)), None)
+    if start is None:
+        return [f"{rel}: no move table (a `| Move | Owner |` table in the quick-tweak route)"]
+    problems: list[str] = []
+    seen: set[str] = set()
+    for line in lines[start + 2:]:
+        if not line.startswith("|"):
+            break
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        moves, owner = cells[0], cells[1] if len(cells) > 1 else ""
+        m = re.fullmatch(r"`(skit-[a-z0-9-]+)`", owner)
+        for move in (x.strip() for x in moves.split(",") if x.strip()):
+            if move in seen:
+                problems.append(f"{rel}: move {move!r} appears more than once in the move table")
+            seen.add(move)
+            if not m or m.group(1) not in skills:
+                problems.append(f"{rel}: move {move!r} names {owner or 'no owner'}, which is not a skill in this repo")
+    return problems
 
 
 def lint(root: Path) -> list[str]:
@@ -150,6 +179,10 @@ def lint(root: Path) -> list[str]:
         for i, line in enumerate(f.read_text().splitlines(), 1):
             if AGENT_PATH_RE.search(line):
                 problems.append(f"{f.relative_to(root)}:{i}: points into the agents folder, which a skills-only install lacks")
+
+    vibe = SKILLS / "skit-vibe" / "SKILL.md"
+    if vibe.exists():
+        problems.extend(lint_moves(vibe, root, set(skills)))
 
     skill_critic = SKILLS / "skit-vibe" / "references" / "critic.md"
     agent_critic = AGENTS / "skit-critic.md"

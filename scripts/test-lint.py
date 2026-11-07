@@ -111,6 +111,29 @@ class LintTest(unittest.TestCase):
         f.write_text(f.read_text() + "\nExtra rule.\n")
         self.assertTrue(any("critic rules differ" in p for p in self.problems()))
 
+    def vibe(self):
+        return self.tmp / "skills" / "skit-vibe" / "SKILL.md"
+
+    def test_lint_rejects_a_move_listed_twice(self):
+        f = self.vibe()
+        f.write_text(f.read_text().replace("| typeset |", "| typeset, quieter |"))
+        self.assertTrue(any("'quieter'" in p and "more than once" in p for p in self.problems()))
+
+    def test_lint_rejects_a_move_whose_owner_is_not_a_skill(self):
+        f = self.vibe()
+        f.write_text(f.read_text().replace("| typeset | `skit-type` |", "| typeset | `skit-typesetter` |"))
+        self.assertTrue(any("'typeset'" in p and "not a skill in this repo" in p for p in self.problems()))
+
+    def test_lint_rejects_a_move_owned_by_an_agent(self):
+        f = self.vibe()
+        f.write_text(f.read_text().replace("| typeset | `skit-type` |", "| typeset | `skit-critic` |"))
+        self.assertTrue(any("'typeset'" in p and "not a skill in this repo" in p for p in self.problems()))
+
+    def test_lint_requires_the_move_table(self):
+        f = self.vibe()
+        f.write_text(f.read_text().replace("| Move | Owner |", "| Request | Skill |"))
+        self.assertTrue(any("no move table" in p for p in self.problems()))
+
 
 if __name__ == "__main__":
     unittest.main()

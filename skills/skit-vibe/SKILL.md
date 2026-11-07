@@ -10,6 +10,16 @@ This skill is a workflow, not an aesthetic. It decides how much process an inter
 ## 1. Pick the route
 
 1. **Quick tweak.** One component or style area; none of the Builder's quick-tweak escalations (`skit-builder` agent) apply. Inspect the current screen, tokens and nearest comparable pattern, then build without an approval pause unless the request conflicts with a `[stated]` decision (a settled line in the project's `design/decisions.md`, written by `skit-design-grill`).
+
+   When the request names a move (a kind of design change, such as "make the pricing cards quieter" or "harden checkout"), load the move's owner before building and follow its guidance. Each move has exactly one owner:
+
+   | Move | Owner |
+   | --- | --- |
+   | bolder, quieter, distill, colorize, animate | `skit-visual-design` |
+   | typeset | `skit-type` |
+   | layout, harden | `skit-interface` |
+   | clarify | `skit-ux-copy` |
+
 2. **Shape first.** A new screen, changed workflow, unclear hierarchy or competing direction. If `design/decisions.md` has no settled direction, run `skit-design-grill` in the main session. Then run the Plan role and present the single decision that changes the work. Wait for approval before building. A new standalone page is always this route; use the active design skills directly.
 3. **Risky change.** Authentication, persistent data, dependencies, destructive operations, migrations or broad architecture. Run the Plan role, explain the impact and rollback shape, and wait for explicit approval before implementation.
 
