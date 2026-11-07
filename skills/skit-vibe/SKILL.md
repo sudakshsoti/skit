@@ -20,6 +20,8 @@ This skill is a workflow, not an aesthetic. It decides how much process an inter
    | layout, harden | `skit-interface` |
    | clarify | `skit-ux-copy` |
 
+   Polish is not a move. `skit-polish` runs only when the user calls it by name; when a request asks for a finishing pass, build what it names and point the user to `skit-polish`.
+
 2. **Shape first.** A new screen, changed workflow, unclear hierarchy or competing direction. If `design/decisions.md` has no settled direction, run `skit-design-grill` in the main session. Then run the Plan role and present the single decision that changes the work. Wait for approval before building. A new standalone page is always this route; use the active design skills directly.
 3. **Risky change.** Authentication, persistent data, dependencies, destructive operations, migrations or broad architecture. Run the Plan role, explain the impact and rollback shape, and wait for explicit approval before implementation.
 

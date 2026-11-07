@@ -80,6 +80,9 @@ Most skills start on their own when your request matches. The ones marked manual
 **`skit-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. If Impeccable's detector is installed in the project, it runs the detector's command line as an automatic check and hands the findings to the reviewer; if not, the report says the audit didn't run. In Claude Code it hands the build to the `skit-builder` agent and the review to `skit-critic`. Without those agents it does the same work in the main session and a fresh subagent, using the critic rules it carries in `references/critic.md`.
 > "Add a filter bar to the orders table."
 
+**`skit-polish`** (manual) is a finishing pass for a page that is right in direction but still feels unfinished. It checks the small details, such as hover states that shift the layout, missing press feedback and straight quotes in UI text, and points to the skill that owns each rule rather than repeating it.
+> "/skit:skit-polish the pricing page"
+
 ### Planning and review
 
 **`skit-grilling`** is the design grill for any plan, decision or idea. It asks a few sharp questions per round, using your agent's question picker when it has one, until nothing important is left assumed. Inspired by Matt Pocock's `grilling` skill.
