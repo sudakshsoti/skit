@@ -1,5 +1,5 @@
 ---
-name: soti-bro
+name: skit-bro
 description: "Restate your last message in plain words, one human to another."
 disable-model-invocation: true
 ---

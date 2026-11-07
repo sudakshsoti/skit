@@ -3,7 +3,7 @@
 # Bumps .claude-plugin/plugin.json, commits, tags v<version>, pushes, and
 # creates a GitHub release with generated notes. Users with auto-update on
 # receive it at their next Claude Code start; everyone else on
-# `/plugin marketplace update soti`.
+# `/plugin marketplace update skit`.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

@@ -70,7 +70,7 @@ Anti-patterns: `--color-blue-button` (appearance named at the semantic tier, lie
 
 ## Contrast: APCA alongside WCAG, never replacing it
 
-**WCAG 2.2 is the conformance check, and the `soti-interface` skill owns its thresholds** (its target-contrast-reflow reference). Report APCA Lc only as an additional perceptual measure, never as a substitute for a WCAG conformance claim. Where a project must claim formal WCAG 2.x conformance, WCAG is the gate and APCA is the tiebreaker for anything already passing WCAG.
+**WCAG 2.2 is the conformance check, and the `skit-interface` skill owns its thresholds** (its target-contrast-reflow reference). Report APCA Lc only as an additional perceptual measure, never as a substitute for a WCAG conformance claim. Where a project must claim formal WCAG 2.x conformance, WCAG is the gate and APCA is the tiebreaker for anything already passing WCAG.
 
 APCA Lc thresholds, used as the supplementary perceptual measure:
 

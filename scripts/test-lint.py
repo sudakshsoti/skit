@@ -33,25 +33,45 @@ class LintTest(unittest.TestCase):
         self.assertEqual(lint.lint(REPO), [])
 
     def test_ux_copy_and_handoff_start_automatically(self):
-        for name in ("soti-ux-copy", "soti-handoff"):
+        for name in ("skit-ux-copy", "skit-handoff"):
             text = (REPO / "skills" / name / "SKILL.md").read_text()
             self.assertNotIn("disable-model-invocation", text, name)
 
     def test_lint_rejects_a_manual_only_ux_copy(self):
-        f = self.tmp / "skills" / "soti-ux-copy" / "SKILL.md"
+        f = self.tmp / "skills" / "skit-ux-copy" / "SKILL.md"
         f.write_text(f.read_text().replace("\n---\n", "\ndisable-model-invocation: true\n---\n", 1))
-        self.assertTrue(any("soti-ux-copy" in p and "start automatically" in p for p in self.problems()))
+        self.assertTrue(any("skit-ux-copy" in p and "start automatically" in p for p in self.problems()))
 
     def test_lint_rejects_a_skill_that_reads_the_agents_folder(self):
-        f = self.tmp / "skills" / "soti-vibe" / "SKILL.md"
-        f.write_text(f.read_text() + "\nRead `../../agents/soti-critic.md`.\n")
+        f = self.tmp / "skills" / "skit-vibe" / "SKILL.md"
+        f.write_text(f.read_text() + "\nRead `../../agents/skit-critic.md`.\n")
         self.assertTrue(any("agents folder" in p for p in self.problems()))
 
+    def test_lint_requires_the_skit_prefix_on_a_skill(self):
+        (self.tmp / "skills" / "skit-bro").rename(self.tmp / "skills" / "soti-bro")
+        f = self.tmp / "skills" / "soti-bro" / "SKILL.md"
+        f.write_text(f.read_text().replace("name: skit-bro", "name: soti-bro"))
+        self.assertTrue(any("soti-bro" in p and "bad skill name" in p for p in self.problems()))
+
+    def test_lint_requires_the_skit_prefix_on_an_agent(self):
+        (self.tmp / "agents" / "skit-builder.md").rename(self.tmp / "agents" / "soti-builder.md")
+        f = self.tmp / "agents" / "soti-builder.md"
+        f.write_text(f.read_text().replace("name: skit-builder", "name: soti-builder"))
+        self.assertTrue(any("soti-builder" in p and "start with skit-" in p for p in self.problems()))
+
+    def test_plugin_and_marketplace_are_named_skit(self):
+        import json
+        plugin = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text())
+        market = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text())
+        self.assertEqual(plugin["name"], "skit")
+        self.assertEqual(market["name"], "skit")
+        self.assertEqual([p["name"] for p in market["plugins"]], ["skit"])
+
     def test_vibe_ships_the_critic_rules_in_the_skill(self):
-        self.assertTrue((REPO / "skills" / "soti-vibe" / "references" / "critic.md").is_file())
+        self.assertTrue((REPO / "skills" / "skit-vibe" / "references" / "critic.md").is_file())
 
     def test_lint_rejects_critic_rules_that_drifted_from_the_agent(self):
-        f = self.tmp / "skills" / "soti-vibe" / "references" / "critic.md"
+        f = self.tmp / "skills" / "skit-vibe" / "references" / "critic.md"
         f.write_text(f.read_text() + "\nExtra rule.\n")
         self.assertTrue(any("critic rules differ" in p for p in self.problems()))
 

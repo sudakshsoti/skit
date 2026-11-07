@@ -1,6 +1,6 @@
 ---
-name: soti-art-direction
-description: "Use for visual direction in a product UI: colour, hierarchy, responsive layout, CSS tokens, `@theme`, and OKLCH, while first classifying the surface intent. Not for a token or colour tweak inside an existing system, typography-primary work (soti-type), or behaviour and states (soti-interface)."
+name: skit-art-direction
+description: "Use for visual direction in a product UI: colour, hierarchy, responsive layout, CSS tokens, `@theme`, and OKLCH, while first classifying the surface intent. Not for a token or colour tweak inside an existing system, typography-primary work (skit-type), or behaviour and states (skit-interface)."
 ---
 
 # Art direction
@@ -9,7 +9,7 @@ Two jobs, in order: make a direction specific to the subject, then execute it
 with real type, colour and token systems rather than defaults.
 
 **Arrangement comes first and is not this skill's job.** Run
-`soti-interface` before this one on any screen that repeats a unit,
+`skit-interface` before this one on any screen that repeats a unit,
 compares records, or carries per-item controls. A composition failure is invisible
 in a palette and survives any amount of colour and type work.
 
@@ -99,7 +99,7 @@ its container.
   weights unless a third has a defined job.
 - **Interactive elements have five states:** rest, hover, active, focus-visible
   and disabled.
-- **Accessibility and state thresholds belong to the `soti-interface` skill.**
+- **Accessibility and state thresholds belong to the `skit-interface` skill.**
   For focus indicators, contrast ratios, 390px reflow, tap-target size and
   empty or error states, read it and apply its thresholds; do not restate them here.
 - **Form controls are styled.** An unstyled `<select>` or `<input>` is rarely an
@@ -122,7 +122,7 @@ axes by tag (`wght`, `wdth`, `ital`, `opsz`, `GRAD`, `slnt`, plus foundry custom
 axes). Use `@font-face` with appropriate `unicode-range`, `size-adjust` and
 metric overrides.
 
-For specialist type selection, typesetting, font engineering, or cross-medium typography, invoke `soti-type`. Keep these baseline checks here when type serves an integrated UI direction.
+For specialist type selection, typesetting, font engineering, or cross-medium typography, invoke `skit-type`. Keep these baseline checks here when type serves an integrated UI direction.
 
 **Colour:** build OKLCH ramps with perceptual uniformity across the L axis, use
 dark/light token architecture, and prefer `color-mix()` for state variants over
@@ -139,7 +139,7 @@ utility-class soup. When extending shadcn/ui, retain and extend its token names
 such as `--background`, `--foreground`, `--primary` and `--ring`.
 
 Use this skill for visual-system choices, not behaviour-only components or data
-flow. For a self-contained browser artifact, use this skill together with `soti-type` and `soti-interface` as needed.
+flow. For a self-contained browser artifact, use this skill together with `skit-type` and `skit-interface` as needed.
 
 The list above is the whole anti-slop list; do not expand it here.
 
@@ -147,7 +147,7 @@ The list above is the whole anti-slop list; do not expand it here.
 
 **Web licences and font fallbacks.** Before proposing a desktop-licensed face (for
 example Dinamo Diatype) as a webfont, or a system stack as the final answer, read
-the `soti-type` skill, "When the licence is the constraint". Recommend from the
+the `skit-type` skill, "When the licence is the constraint". Recommend from the
 whole world of type when a better face exists; a font library the user already
 owns is context, not a shortlist.
 

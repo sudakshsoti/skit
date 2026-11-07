@@ -1,5 +1,5 @@
 ---
-name: soti-grilling
+name: skit-grilling
 description: "Use to stress-test a plan, decision, or idea by interviewing the user in rounds until nothing is left assumed, or when the user says 'grill me'. Asks through the harness's question tool when it has one."
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: soti-autopilot
+name: skit-autopilot
 description: "Use when the user points to a markdown checklist plan and wants hands-off execution. Not for coordinating several dependent workstreams or for unattended ticket runs."
 allowed-tools: Read, Edit, Bash(git *), Agent, Glob, Grep
 ---
@@ -73,7 +73,7 @@ clause, so the routing is auditable.
 - **Default (Claude Code and any other harness):** a general-purpose subagent.
   Drop to a cheaper model (Sonnet or Haiku in Claude Code) for mechanical items;
   keep the session's model for judgment-heavy ones. If the project defines its
-  own agents (a code worker, a UI builder such as `soti-builder`), prefer the one
+  own agents (a code worker, a UI builder such as `skit-builder`), prefer the one
   whose description fits the item.
 - **When a `specialist-delegation` skill is available** (typically Pi and OMP
   setups), use it for role selection, handoff packets and verification. Pick a

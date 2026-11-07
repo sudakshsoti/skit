@@ -1,6 +1,6 @@
 ---
-name: soti-slop-check
-description: "Use to review AI-generated frontend code for human maintainability: duplication, abstractions, naming, structure, silent failures, cross-session drift. Not for reviewing a plan before building (soti-plan-check) or for diagnosing a defect."
+name: skit-slop-check
+description: "Use to review AI-generated frontend code for human maintainability: duplication, abstractions, naming, structure, silent failures, cross-session drift. Not for reviewing a plan before building (skit-plan-check) or for diagnosing a defect."
 user-invocable: true
 disable-model-invocation: true
 ---

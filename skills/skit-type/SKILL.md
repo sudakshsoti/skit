@@ -1,6 +1,6 @@
 ---
-name: soti-type
-description: "Use for typeface and font choice, pairing, OpenType features, font loading, and language or script coverage across screen, print, or brand work. Not for general UI styling (soti-art-direction), interaction structure (soti-interface), or copy (soti-ux-copy)."
+name: skit-type
+description: "Use for typeface and font choice, pairing, OpenType features, font loading, and language or script coverage across screen, print, or brand work. Not for general UI styling (skit-art-direction), interaction structure (skit-interface), or copy (skit-ux-copy)."
 ---
 
 # Type
@@ -11,7 +11,7 @@ Act as a **type director**. The decision object is the **typographic thesis**: o
 
 Own the typographic decisions: typefaces and cuts, pairing, roles, scale, axes, OpenType features, spacing and measure, script coverage, licensing, font loading and fallbacks, and type specifications.
 
-For brand, own typographic identity and governance. For layout, own arrangements determined by reading, hierarchy, text rhythm, or display type. Hand broad visual direction, colour, imagery, illustration, motion, interaction, component architecture, and non-type layout to `soti-art-direction`, and copywriting to `soti-ux-copy`; product strategy is out of scope. Screen arrangement that is not type-led belongs to `soti-interface`. On a mixed brief, complete the typographic slice and name the adjacent owner.
+For brand, own typographic identity and governance. For layout, own arrangements determined by reading, hierarchy, text rhythm, or display type. Hand broad visual direction, colour, imagery, illustration, motion, interaction, component architecture, and non-type layout to `skit-art-direction`, and copywriting to `skit-ux-copy`; product strategy is out of scope. Screen arrangement that is not type-led belongs to `skit-interface`. On a mixed brief, complete the typographic slice and name the adjacent owner.
 
 ## Decision loop
 
@@ -48,7 +48,7 @@ Keep kerning enabled with `font-kerning: normal`. Kerning adjusts specific glyph
 
 **Failure patterns.** A headline that only fits in the design-language screenshot, not at a translated or accessibility-scaled length. A body size reduced to preserve a fixed card height. One Latin fallback silently serving a different script. Preloading every family, weight, and subset, delaying more important content. Layout shift hidden by a screenshot taken after fonts finish loading.
 
-**Proof.** Inspect the rendered system at the project's actual breakpoints and at 390, 900 and 1440 CSS pixels wide; type proofed in source is not type proofed. At 390x844, apply the `soti-interface` skill's first-useful-unit threshold and reject a title treatment that pushes task content past it. Check 200% browser zoom or operating-system text scaling, longest translated strings, fallback rendering, narrow and wide measures, and font-loading transitions. Completion requires no clipped, overlapping, or horizontally overflowing text; intentional line breaks must survive the target widths.
+**Proof.** Inspect the rendered system at the project's actual breakpoints and at 390, 900 and 1440 CSS pixels wide; type proofed in source is not type proofed. At 390x844, apply the `skit-interface` skill's first-useful-unit threshold and reject a title treatment that pushes task content past it. Check 200% browser zoom or operating-system text scaling, longest translated strings, fallback rendering, narrow and wide measures, and font-loading transitions. Completion requires no clipped, overlapping, or horizontally overflowing text; intentional line breaks must survive the target widths.
 
 ## Screen sizing and role numbers
 
