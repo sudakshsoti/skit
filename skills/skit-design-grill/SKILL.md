@@ -53,6 +53,17 @@ This applies to any reference: a named app, a site, a pasted screenshot, a compe
 
 Append to `design/decisions.md` at the repo root, creating it if absent, the moment a decision settles. `skit-vibe`, `skit-interface` and the `skit-builder` agent read this file and treat `[stated]` lines as settled, so it is the hand-off from this grill to the build.
 
+**The file opens with an About block**: three plain sentences in the user's own words saying what the product is, who it's for and how it should feel. No labels, no tags, no `[stated]` markers; it reads like a person wrote it:
+
+```markdown
+## About
+A budgeting app for freelancers who get paid irregularly.
+They check it on their phone between jobs, usually in a hurry.
+It should feel calm and a little warm, like a good notebook, not a bank.
+```
+
+Write it as soon as purpose, audience and feel settle (they sit near the root of the tree), and rewrite it when the user changes any of them. Every sentence comes from something the user said; a sentence you would have to infer becomes a question instead. `skit-visual-design` reads the block in place of asking for subject and audience. Decision lines go below it.
+
 Write each line as it settles, not at the end of the session. The user contradicts themselves often, and a file written only at the end loses the earlier position that the contradiction is worth seeing against.
 
 Tag every line with where it came from:

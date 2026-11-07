@@ -51,7 +51,7 @@ flowchart LR
     V --> S[skit-slop-check<br/>is the code maintainable?]
 ```
 
-Decisions you agree on during a grill are written to `design/decisions.md` in your project. The other skills read that file, so the agent doesn't ask again or override what you settled. A skill creates the file the first time it needs it. If a skill keeps flagging something you chose on purpose, such as your brand font on the overused list, tell the grill why: it records that as an exception, and the skills stop flagging that one thing while still flagging the rest.
+Decisions you agree on during a grill are written to `design/decisions.md` in your project. The other skills read that file, so the agent doesn't ask again or override what you settled. The file opens with three plain sentences on what the product is, who it's for and how it should feel, so you say that once. A skill creates the file the first time it needs it. If a skill keeps flagging something you chose on purpose, such as your brand font on the overused list, tell the grill why: it records that as an exception, and the skills stop flagging that one thing while still flagging the rest.
 
 ## The skills
 

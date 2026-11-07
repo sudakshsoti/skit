@@ -21,6 +21,13 @@ that a template would not. "Independent watchmaker, collectors comparing movemen
 make provenance legible through a technical editorial catalogue" is grounded.
 "Clean and modern" is not.
 
+Take the subject and audience from the About block at the top of
+`design/decisions.md` when it has one, and ask only for what it leaves out. The
+page's job is per page, so state it on every run. With no About block, ask for
+subject and audience. When the brief contradicts the About block (another
+audience, the opposite feel), quote the block, name the conflict and ask which
+holds before going further.
+
 Derive the direction from the subject's materials, instruments, artefacts and
 vernacular. Do not choose an aesthetic by chance, and do not treat the following
 as a finite menu. They are labelled examples to adapt when they fit the actual
