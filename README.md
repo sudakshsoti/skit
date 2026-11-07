@@ -39,6 +39,7 @@ You don't have to use them in order; each one works alone. But for a new screen 
 
 ```mermaid
 flowchart LR
+    P[skit-strategy<br/>the business case] --> G
     G[skit-design-grill<br/>settle the decisions] --> A[skit-visual-design<br/>colour, layout, tokens]
     G --> T[skit-type<br/>typefaces]
     G --> I[skit-interface<br/>controls and states]
@@ -57,6 +58,9 @@ Decisions you agree on during a grill are written to `design/decisions.md` in yo
 Most skills start on their own when your request matches. The ones marked manual run only when you call them. In Claude Code, type `/skit:<skill-name>` (for example `/skit:skit-vibe`; the plugin name comes first, so it reads doubled); elsewhere, ask for the skill by name.
 
 ### Design
+
+**`skit-strategy`** is a product and UX strategy sparring partner. It works out the business model first (who pays whom, what the moat is, whose workflow matters), then brainstorms directions, audits a design against strategy and craft together, or drafts the artefacts: strategy docs, journey maps, teardowns, decision logs and stakeholder notes. It pushes back rather than agreeing.
+> "Audit our onboarding flow. Is it solving activation or a symptom of it?"
 
 **`skit-design-grill`** interviews you in rounds to settle how a screen should look and behave before anything gets built. It sticks to visible decisions (layout, states, copy, motion) and leaves code architecture alone.
 > "Grill me on the design of the onboarding flow before we build it."
