@@ -31,7 +31,7 @@ Update later with `npx skills update`. The helper agents are Claude Code only; t
 
 ### claude.ai
 
-Download this repo, zip any skill folder from `skills/` (for example `skills/skit-type`), and upload it under **Settings → Capabilities → Skills**. claude.ai doesn't update uploaded skills, so re-upload when a new release comes out.
+Download this repo, zip any skill folder from `skills/` (for example `skills/skit-type`), and upload it under **Settings → Capabilities → Skills**. claude.ai doesn't update uploaded skills, so re-upload when the skills change (the Claude Code plugin follows every commit; an upload does not).
 
 ## How the skills fit together
 
