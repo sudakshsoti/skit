@@ -1,6 +1,6 @@
 ---
 name: skit-design-grill
-description: "Run a round-based interview to settle visual and behavioural interface decisions, recording agreed design decisions while excluding implementation architecture."
+description: "Use to settle visual and behavioural interface decisions by a round-based interview, recording agreed design decisions and excluding implementation architecture; also for 'grill me on the design'. For a plan, decision or idea that is not an interface, use skit-grilling."
 ---
 
 # Design grill

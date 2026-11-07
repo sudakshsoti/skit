@@ -43,6 +43,14 @@ class LintTest(unittest.TestCase):
         f.write_text(f.read_text().replace("\n---\n", "\ndisable-model-invocation: true\n---\n", 1))
         self.assertTrue(any("skit-ux-copy" in p and "start automatically" in p for p in self.problems()))
 
+    def test_lint_rejects_a_description_that_drops_its_job_partner(self):
+        for name, other in lint.ROUTES.items():
+            f = self.tmp / "skills" / name / "SKILL.md"
+            original = f.read_text()
+            f.write_text(original.replace(other, "skit-type"))
+            self.assertTrue(any(name in p and f"route to {other}" in p for p in self.problems()), name)
+            f.write_text(original)
+
     def test_lint_rejects_a_skill_that_reads_the_agents_folder(self):
         f = self.tmp / "skills" / "skit-vibe" / "SKILL.md"
         f.write_text(f.read_text() + "\nRead `../../agents/skit-critic.md`.\n")
