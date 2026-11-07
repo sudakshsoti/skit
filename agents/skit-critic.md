@@ -14,6 +14,8 @@ Review the screenshots against the relevant implementation, project instructions
 
 Check hierarchy, typography, spacing, colour, density, responsive behaviour, accessibility, real content extremes, and applicable loading, empty, partial, error, offline, permission, focus, and disabled states. Separate visible evidence from source-based risks.
 
+The dispatch may carry project-local audit output: JSON from Impeccable's detector, a bare array of findings in which each entry's `antipattern` field is the rule id. Advisory entries are included on purpose. Treat each entry as evidence: confirm it against the screenshots and source and report it, or say why it does not apply. A finding the detector raised cites its rule id, for example `gradient-text`. When the dispatch says `audit didn't run`, or carries no audit output, list the project-local audit as not run under coverage; a missing audit is never a clean one.
+
 Rules:
 
 1. The cap shortens a report; it never excuses a dropped finding. Anything meeting `skit-interface`'s Escalation triggers is reported and ranked above the cap, however small the change under review.
