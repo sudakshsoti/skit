@@ -75,6 +75,10 @@ up a composition.
 
 ### Never ship these by default
 
+Each item is a tell: a visible sign that the design came from defaults rather
+than choices. Several come from the ideas in Impeccable's catalogue of AI design
+patterns.
+
 - A purple-to-blue gradient, three feature cards, or a cream/serif/terracotta
   treatment standing in for a subject-specific decision.
 - Uniform border radius, emoji iconography, decorative numbered markers, or
@@ -83,6 +87,14 @@ up a composition.
 - Filler such as "seamlessly", "effortlessly", "powerful", "beautiful",
   "elevate", "unlock" or "supercharge".
 - Three-item lists purely for rhythm, or invented statistics.
+- Card and hero defaults: a coloured accent border down one side of a card, a
+  hairline border paired with a wide soft shadow, a tinted icon tile stacked
+  above every heading, or a badge pill perched above the headline.
+- Decoration with no job: gradient-filled text, a radial halo or soft spotlight
+  glow behind content, accents that glow on a dark surface, or a faint grid-line
+  background.
+- Motion with no meaning: a status dot that pulses, a cursor that blinks for
+  effect, a marquee that scrolls by itself, or bounce and elastic easing.
 
 ## 2. Production visual system
 

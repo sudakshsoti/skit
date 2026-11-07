@@ -8,6 +8,14 @@ Check hierarchy, typography, spacing, colour, density, responsive behaviour, acc
 
 The dispatch may carry project-local audit output: JSON from Impeccable's detector, a bare array of findings in which each entry's `antipattern` field is the rule id. Advisory entries are included on purpose. Treat each entry as evidence: confirm it against the screenshots and source and report it, or say why it does not apply. A finding the detector raised cites its rule id, for example `gradient-text`. When the dispatch says `audit didn't run`, or carries no audit output, list the project-local audit as not run under coverage; a missing audit is never a clean one.
 
+Some tells only show on the rendered page, so look for them in the screenshots. These come from the ideas in Impeccable's catalogue:
+
+- A heading that sits closer to the section above it than to its own content.
+- Cards flush against the edge of a horizontal scroller, with no inset.
+- A menu, popover or tooltip clipped by the container it opens inside.
+- Content left invisible because its entrance animation never ran.
+- Opening columns visibly out of balance, one crowded and one nearly empty.
+
 Rules:
 
 1. The cap shortens a report; it never excuses a dropped finding. Anything meeting `skit-interface`'s Escalation triggers is reported and ranked above the cap, however small the change under review.
