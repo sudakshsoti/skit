@@ -27,7 +27,7 @@ That installs every skill and the two helper agents.
 npx skills add sudakshsoti/skit
 ```
 
-Update later with `npx skills update`. The helper agents are Claude Code only; the skills fall back to doing the work themselves when the agents aren't there.
+Update later with `npx skills update`. This route installs the skills only, not the helper agents; the skills fall back to doing the work themselves when the agents aren't there.
 
 ### claude.ai
 
