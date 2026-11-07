@@ -1,6 +1,6 @@
 ---
 name: skit-vibe
-description: "Use for any interface change (tweak, new screen, risky UI/data change) to choose process depth and build-review. Not for non-UI work, or for design critique alone (skit-interface, skit-art-direction, skit-type)."
+description: "Use to build any interface change (tweak, new screen, risky UI/data change): it owns building UI, choosing process depth and running build-review. Not for non-UI work, or for reviewing or critiquing an existing UI (skit-interface); visual direction and type come from skit-art-direction and skit-type."
 ---
 
 # Vibe

@@ -15,6 +15,9 @@ Rules:
 - README.md documents every skill on disk.
 - `skit-ux-copy` and `skit-handoff` start automatically: other skills hand work
   to them, and a manual-only skill cannot be loaded by the model.
+- Each job has one named owner, and the descriptions agree: `skit-vibe` and
+  `skit-interface` name each other (build vs review), as do `skit-grilling` and
+  `skit-design-grill` (general vs design grill).
 - No skill points into the agents folder. A skill must work when only skills
   are installed, so the rules an agent carries are also shipped in the skill:
   `skit-vibe/references/critic.md` must match the body of `agents/skit-critic.md`.
@@ -23,6 +26,7 @@ Exit 1 with one line per problem; print "ok" otherwise.
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -31,6 +35,13 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # Skills other skills depend on, so the model must be able to start them.
 AUTO_START = ("skit-ux-copy", "skit-handoff")
+# Skills whose descriptions must route to each other, so each job has one owner.
+ROUTES = {
+    "skit-vibe": "skit-interface",
+    "skit-interface": "skit-vibe",
+    "skit-grilling": "skit-design-grill",
+    "skit-design-grill": "skit-grilling",
+}
 AGENT_PATH_RE = re.compile(r"(?:\.\./)+agents/|`agents/")
 
 BLOCKLIST = [
@@ -122,6 +133,11 @@ def lint(root: Path) -> list[str]:
         if f.exists() and "disable-model-invocation" in frontmatter(f.read_text()):
             problems.append(f"{f.relative_to(root)}: must start automatically (remove disable-model-invocation)")
 
+    for name, other in ROUTES.items():
+        f = SKILLS / name / "SKILL.md"
+        if f.exists() and other not in frontmatter(f.read_text()).get("description", ""):
+            problems.append(f"{f.relative_to(root)}: description must route to {other}")
+
     for f in sorted(SKILLS.rglob("*.md")):
         for i, line in enumerate(f.read_text().splitlines(), 1):
             if AGENT_PATH_RE.search(line):
@@ -136,6 +152,20 @@ def lint(root: Path) -> list[str]:
             )
     elif (SKILLS / "skit-vibe").exists():
         problems.append("skills/skit-vibe/references/critic.md: missing (skit-vibe must carry the critic rules)")
+
+    # No version anywhere: Claude Code then uses the commit SHA, so every push
+    # reaches installed plugins. A pinned version would freeze users on a cached copy.
+    manifests = root / ".claude-plugin"
+    for fname in ("plugin.json", "marketplace.json"):
+        f = manifests / fname
+        if not f.exists():
+            continue
+        data = json.loads(f.read_text())
+        entries = [data] + [e for e in data.get("plugins", []) if isinstance(e, dict)]
+        if any("version" in e for e in entries):
+            problems.append(
+                f".claude-plugin/{fname}: remove `version`; without one the plugin follows every commit"
+            )
 
     return problems
 
