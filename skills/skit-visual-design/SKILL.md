@@ -1,9 +1,9 @@
 ---
-name: skit-art-direction
+name: skit-visual-design
 description: "Use for visual direction in a product UI: colour, hierarchy, responsive layout, CSS tokens, `@theme`, and OKLCH, while first classifying the surface intent. Not for a token or colour tweak inside an existing system, typography-primary work (skit-type), behaviour and states or UI review (skit-interface), or building the change (skit-vibe)."
 ---
 
-# Art direction
+# Visual design
 
 Two jobs, in order: make a direction specific to the subject, then execute it
 with real type, colour and token systems rather than defaults.

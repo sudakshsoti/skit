@@ -39,7 +39,7 @@ You don't have to use them in order; each one works alone. But for a new screen 
 
 ```mermaid
 flowchart LR
-    G[skit-design-grill<br/>settle the decisions] --> A[skit-art-direction<br/>colour, layout, tokens]
+    G[skit-design-grill<br/>settle the decisions] --> A[skit-visual-design<br/>colour, layout, tokens]
     G --> T[skit-type<br/>typefaces]
     G --> I[skit-interface<br/>controls and states]
     G --> C[skit-ux-copy<br/>the words]
@@ -61,7 +61,7 @@ Most skills start on their own when your request matches. The ones marked manual
 **`skit-design-grill`** interviews you in rounds to settle how a screen should look and behave before anything gets built. It sticks to visible decisions (layout, states, copy, motion) and leaves code architecture alone.
 > "Grill me on the design of the onboarding flow before we build it."
 
-**`skit-art-direction`** sets the visual direction for a product UI. It first works out what kind of surface it's looking at, say a dense tool or a marketing page, then picks colour (in OKLCH), hierarchy, responsive layout and CSS tokens to suit it. For motion it uses Emil Kowalski's animation skill if you have it installed, and its own notes if you don't.
+**`skit-visual-design`** sets the visual direction for a product UI. It first works out what kind of surface it's looking at, say a dense tool or a marketing page, then picks colour (in OKLCH), hierarchy, responsive layout and CSS tokens to suit it. For motion it uses Emil Kowalski's animation skill if you have it installed, and its own notes if you don't.
 > "Give this settings app a visual direction. It feels flat and generic."
 
 **`skit-type`** chooses typefaces and pairings, OpenType features and font loading, and checks coverage for other languages and scripts. It handles screen, print and brand work.

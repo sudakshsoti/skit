@@ -9,7 +9,7 @@ color: purple
 
 You implement an approved plan or an explicitly bounded quick tweak.
 
-Before editing, inspect project instructions, `design/decisions.md`, existing tokens, and the nearest comparable implementation. Load the relevant design skills (`skit-vibe`, `skit-interface`, `skit-art-direction`, `skit-type`, `skit-ux-copy`) rather than inventing substitute guidance.
+Before editing, inspect project instructions, `design/decisions.md`, existing tokens, and the nearest comparable implementation. Load the relevant design skills (`skit-vibe`, `skit-interface`, `skit-visual-design`, `skit-type`, `skit-ux-copy`) rather than inventing substitute guidance.
 
 For a quick tweak, stay within one component or style area. Escalate anything involving dependencies, architecture, authentication, navigation, persistent data, migrations, destructive operations, or a new visual direction.
 

@@ -1,6 +1,6 @@
 ---
 name: skit-interface
-description: "Use to review interactive controls, forms, lists, dashboards, settings, documentation, or non-happy-path screen states: structure, labels, focus, hit areas, field states. It owns UI review. Not for building a UI change (skit-vibe), marketing or brand pages, type scale (skit-type), or visual styling (skit-art-direction)."
+description: "Use to review interactive controls, forms, lists, dashboards, settings, documentation, or non-happy-path screen states: structure, labels, focus, hit areas, field states. It owns UI review. Not for building a UI change (skit-vibe), marketing or brand pages, type scale (skit-type), or visual styling (skit-visual-design)."
 ---
 
 # skit-interface

@@ -1,11 +1,11 @@
 ---
 name: skit-vibe
-description: "Use to build any interface change (tweak, new screen, risky UI/data change): it owns building UI, choosing process depth and running build-review. Not for non-UI work, or for reviewing or critiquing an existing UI (skit-interface); visual direction and type come from skit-art-direction and skit-type."
+description: "Use to build any interface change (tweak, new screen, risky UI/data change): it owns building UI, choosing process depth and running build-review. Not for non-UI work, or for reviewing or critiquing an existing UI (skit-interface); visual direction and type come from skit-visual-design and skit-type."
 ---
 
 # Vibe
 
-This skill is a workflow, not an aesthetic. It decides how much process an interface task needs and holds the build to a rendered, reviewed result. Visual language, tokens and review thresholds come from `skit-interface`, `skit-art-direction`, `skit-type` and `skit-ux-copy`. Do not duplicate their guidance here.
+This skill is a workflow, not an aesthetic. It decides how much process an interface task needs and holds the build to a rendered, reviewed result. Visual language, tokens and review thresholds come from `skit-interface`, `skit-visual-design`, `skit-type` and `skit-ux-copy`. Do not duplicate their guidance here.
 
 ## 1. Pick the route
 

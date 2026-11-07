@@ -1,6 +1,6 @@
 ---
 name: skit-type
-description: "Use for typeface and font choice, pairing, OpenType features, font loading, and language or script coverage across screen, print, or brand work. Not for general UI styling (skit-art-direction), interaction structure (skit-interface), or copy (skit-ux-copy)."
+description: "Use for typeface and font choice, pairing, OpenType features, font loading, and language or script coverage across screen, print, or brand work. Not for general UI styling (skit-visual-design), interaction structure (skit-interface), or copy (skit-ux-copy)."
 ---
 
 # Type
@@ -11,7 +11,7 @@ Act as a **type director**. The decision object is the **typographic thesis**: o
 
 Own the typographic decisions: typefaces and cuts, pairing, roles, scale, axes, OpenType features, spacing and measure, script coverage, licensing, font loading and fallbacks, and type specifications.
 
-For brand, own typographic identity and governance. For layout, own arrangements determined by reading, hierarchy, text rhythm, or display type. Hand broad visual direction, colour, imagery, illustration, motion, interaction, component architecture, and non-type layout to `skit-art-direction`, and copywriting to `skit-ux-copy`; product strategy is out of scope. Screen arrangement that is not type-led belongs to `skit-interface`. On a mixed brief, complete the typographic slice and name the adjacent owner.
+For brand, own typographic identity and governance. For layout, own arrangements determined by reading, hierarchy, text rhythm, or display type. Hand broad visual direction, colour, imagery, illustration, motion, interaction, component architecture, and non-type layout to `skit-visual-design`, and copywriting to `skit-ux-copy`; product strategy is out of scope. Screen arrangement that is not type-led belongs to `skit-interface`. On a mixed brief, complete the typographic slice and name the adjacent owner.
 
 ## Decision loop
 
