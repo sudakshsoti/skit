@@ -15,6 +15,9 @@ Rules:
 - README.md documents every skill on disk.
 - `skit-ux-copy` and `skit-handoff` start automatically: other skills hand work
   to them, and a manual-only skill cannot be loaded by the model.
+- Each job has one named owner, and the descriptions agree: `skit-vibe` and
+  `skit-interface` name each other (build vs review), as do `skit-grilling` and
+  `skit-design-grill` (general vs design grill).
 - No skill points into the agents folder. A skill must work when only skills
   are installed, so the rules an agent carries are also shipped in the skill:
   `skit-vibe/references/critic.md` must match the body of `agents/skit-critic.md`.
@@ -31,6 +34,13 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # Skills other skills depend on, so the model must be able to start them.
 AUTO_START = ("skit-ux-copy", "skit-handoff")
+# Skills whose descriptions must route to each other, so each job has one owner.
+ROUTES = {
+    "skit-vibe": "skit-interface",
+    "skit-interface": "skit-vibe",
+    "skit-grilling": "skit-design-grill",
+    "skit-design-grill": "skit-grilling",
+}
 AGENT_PATH_RE = re.compile(r"(?:\.\./)+agents/|`agents/")
 
 BLOCKLIST = [
@@ -121,6 +131,11 @@ def lint(root: Path) -> list[str]:
         f = SKILLS / name / "SKILL.md"
         if f.exists() and "disable-model-invocation" in frontmatter(f.read_text()):
             problems.append(f"{f.relative_to(root)}: must start automatically (remove disable-model-invocation)")
+
+    for name, other in ROUTES.items():
+        f = SKILLS / name / "SKILL.md"
+        if f.exists() and other not in frontmatter(f.read_text()).get("description", ""):
+            problems.append(f"{f.relative_to(root)}: description must route to {other}")
 
     for f in sorted(SKILLS.rglob("*.md")):
         for i, line in enumerate(f.read_text().splitlines(), 1):
