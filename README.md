@@ -48,7 +48,7 @@ flowchart LR
     T --> V
     I --> V
     C --> V
-    V --> S[skit-slop-check<br/>is the code maintainable?]
+    V --> S[skit-maintainability-review<br/>is the code maintainable?]
 ```
 
 Decisions you agree on during a grill are written to `design/decisions.md` in your project. The other skills read that file, so the agent doesn't ask again or override what you settled. The file opens with three plain sentences on what the product is, who it's for and how it should feel, so you say that once. A skill creates the file the first time it needs it. If a skill keeps flagging something you chose on purpose, such as your brand font on the overused list, tell the grill why: it records that as an exception, and the skills stop flagging that one thing while still flagging the rest.
@@ -88,13 +88,13 @@ Most skills start on their own when your request matches. The ones marked manual
 **`skit-grilling`** is the design grill for any plan, decision or idea. It asks a few sharp questions per round, using your agent's question picker when it has one, until nothing important is left assumed. Inspired by Matt Pocock's `grilling` skill.
 > "Grill me on this migration plan."
 
-**`skit-plan-check`** runs after the agent proposes a non-trivial plan. It critiques the plan against a fixed checklist (unstated assumptions, contradictions, blind spots like rollback and data loss, over-engineering) and revises it.
+**`skit-self-review`** runs after the agent proposes a non-trivial plan. It critiques the plan against a fixed checklist (unstated assumptions, contradictions, blind spots like rollback and data loss, over-engineering) and revises it.
 > "Check that plan before you start."
 
-**`skit-slop-check`** (manual) reviews AI-written frontend code for whether a person could maintain it. It looks for duplication, needless abstractions, vague names, silent failures and drift between sessions.
-> "/skit:skit-slop-check src/components"
+**`skit-maintainability-review`** (manual) reviews AI-written frontend code for whether a person could maintain it. It looks for duplication, needless abstractions, vague names, silent failures and drift between sessions.
+> "/skit:skit-maintainability-review src/components"
 
-**`skit-autopilot`** works through a markdown checklist plan without stopping to ask. It verifies each item, ticks it off and commits before moving on, and uses subagents where your tool has them.
+**`skit-autopilot`** (manual) works through a markdown checklist plan without stopping to ask. It verifies each item, ticks it off and commits before moving on, and uses subagents where your tool has them.
 > "Run plans/dark-mode.md on autopilot."
 
 ### Session helpers

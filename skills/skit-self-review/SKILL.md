@@ -1,6 +1,6 @@
 ---
-name: skit-plan-check
-description: "Use immediately after proposing a non-trivial engineering plan or when a plan check is requested; critique your own plan against a fixed checklist and revise it to address every point. Not for trivial single-step plans, code diffs, or frontend code quality (skit-slop-check)."
+name: skit-self-review
+description: "Use immediately after proposing a non-trivial engineering plan or when a self-review is requested; critique your own plan against a fixed checklist and revise it to address every point. Not for trivial single-step plans, code diffs, or frontend code quality (skit-maintainability-review)."
 user-invocable: true
 ---
 

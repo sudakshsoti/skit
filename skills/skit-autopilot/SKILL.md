@@ -2,6 +2,7 @@
 name: skit-autopilot
 description: "Use when the user points to a markdown checklist plan and wants hands-off execution. Not for coordinating several dependent workstreams or for unattended ticket runs."
 allowed-tools: Read, Edit, Bash(git *), Agent, Glob, Grep
+disable-model-invocation: true
 ---
 
 # Autopilot

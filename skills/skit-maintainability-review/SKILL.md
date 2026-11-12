@@ -1,6 +1,6 @@
 ---
-name: skit-slop-check
-description: "Use to review AI-generated frontend code for human maintainability: duplication, abstractions, naming, structure, silent failures, cross-session drift. Not for reviewing a plan before building (skit-plan-check) or for diagnosing a defect."
+name: skit-maintainability-review
+description: "Use to review AI-generated frontend code for human maintainability: duplication, abstractions, naming, structure, silent failures, cross-session drift. Not for reviewing a plan before building (skit-self-review) or for diagnosing a defect."
 user-invocable: true
 disable-model-invocation: true
 ---

@@ -1,6 +1,6 @@
 ---
 name: skit-strategy
-description: "Use for industry-agnostic product and UX strategy: business-model reasoning, positioning, workflow critique, journey maps, decision logs, teardowns, or stakeholder narratives. Not for visual direction (skit-visual-design), interface behaviour and states (skit-interface), settling a screen's design decisions (skit-design-grill), or a regulated domain that has its own installed skill."
+description: "Use for product and UX strategy: business models, positioning, journey maps, teardowns, stakeholder narratives. Not for visual direction (skit-visual-design), interface states (skit-interface) or screen design decisions (skit-design-grill)."
 ---
 
 # Design strategy
