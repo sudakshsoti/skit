@@ -115,6 +115,24 @@ class LintTest(unittest.TestCase):
         self.assertNotIn("Triggers:", text)
         self.assertFalse(any("skit-bro" in p for p in self.problems()))
 
+    def map_file(self):
+        return self.tmp / "skills" / "skit-start" / "references" / "map.md"
+
+    def test_lint_rejects_a_skill_missing_from_the_map(self):
+        f = self.map_file()
+        f.write_text("\n".join(l for l in f.read_text().splitlines() if not l.startswith("- **skit-bro**")))
+        self.assertTrue(any("skit-bro must have exactly one entry" in p for p in self.problems()))
+
+    def test_lint_rejects_a_map_entry_for_a_missing_skill(self):
+        f = self.map_file()
+        f.write_text(f.read_text() + "\n- **skit-ghost** (auto): Does nothing.\n")
+        self.assertTrue(any("names skit-ghost" in p for p in self.problems()))
+
+    def test_lint_rejects_a_map_entry_with_the_wrong_mode(self):
+        f = self.map_file()
+        f.write_text(f.read_text().replace("- **skit-bro** (manual)", "- **skit-bro** (auto)"))
+        self.assertTrue(any("skit-bro is listed as auto but is manual" in p for p in self.problems()))
+
     def test_plugin_and_marketplace_are_named_skit(self):
         import json
         plugin = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text())

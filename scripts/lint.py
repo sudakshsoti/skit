@@ -21,6 +21,9 @@ Rules:
 - Each automatic skill's description has a `Triggers:` paragraph of quoted
   phrases people actually say, because that is the text the agent matches a
   request against. A manual skill (`disable-model-invocation`) is exempt.
+- `skit-start/references/map.md` has one entry for every other skill, with the
+  mode it really has (auto or manual), and names no skill that does not exist,
+  so the front door never sends a user to a missing or mislabelled skill.
 - `skit-ux-copy` and `skit-handoff` start automatically: other skills hand work
   to them, and a manual-only skill cannot be loaded by the model.
 - Each job has one named owner, and the descriptions agree: `skit-vibe` and
@@ -131,6 +134,39 @@ def lint_moves(vibe: Path, root: Path, skills: set[str]) -> list[str]:
     return problems
 
 
+MAP_ENTRY_RE = re.compile(r"^- \*\*(skit-[a-z0-9-]+)\*\* \((auto|manual)\):")
+MAP_NAME_RE = re.compile(r"\*\*(skit-[a-z0-9-]+)\*\*")
+
+
+def lint_map(root: Path, skills: list[str]) -> list[str]:
+    """The front door's map lists every other skill once, with its real mode."""
+    f = root / "skills" / "skit-start" / "references" / "map.md"
+    rel = f.relative_to(root)
+    if not f.exists():
+        return [f"{rel}: missing (skit-start reads it to pick a skill)"]
+    problems: list[str] = []
+    text = f.read_text()
+    entries: dict[str, list[str]] = {}
+    for line in text.splitlines():
+        m = MAP_ENTRY_RE.match(line)
+        if m:
+            entries.setdefault(m.group(1), []).append(m.group(2))
+    for name in MAP_NAME_RE.findall(text):
+        if name not in skills:
+            problems.append(f"{rel}: names {name}, which is not a skill in this repo")
+    for name in skills:
+        if name == "skit-start":
+            continue
+        modes = entries.get(name, [])
+        if len(modes) != 1:
+            problems.append(f"{rel}: {name} must have exactly one entry, found {len(modes)}")
+            continue
+        manual = "disable-model-invocation" in frontmatter((root / "skills" / name / "SKILL.md").read_text())
+        if modes[0] != ("manual" if manual else "auto"):
+            problems.append(f"{rel}: {name} is listed as {modes[0]} but is {'manual' if manual else 'auto'}")
+    return problems
+
+
 def lint(root: Path) -> list[str]:
     SKILLS = root / "skills"
     AGENTS = root / "agents"
@@ -205,6 +241,9 @@ def lint(root: Path) -> list[str]:
         for i, line in enumerate(f.read_text().splitlines(), 1):
             if AGENT_PATH_RE.search(line):
                 problems.append(f"{f.relative_to(root)}:{i}: points into the agents folder, which a skills-only install lacks")
+
+    if (SKILLS / "skit-start").exists():
+        problems.extend(lint_map(root, skills))
 
     vibe = SKILLS / "skit-vibe" / "SKILL.md"
     if vibe.exists():

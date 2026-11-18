@@ -35,10 +35,14 @@ Download this repo, zip any skill folder from `skills/` (for example `skills/ski
 
 ## How the skills fit together
 
+**Where to start:** not sure which skill you need? Ask "where do I start?" or "which skill do I need for this?" and `skit-start` names the skill, or the short path of several, then offers to run it.
+
 You don't have to use them in order; each one works alone. But for a new screen they line up like this:
 
 ```mermaid
 flowchart LR
+    ST[skit-start<br/>which skill?] -.-> P
+    ST -.-> G
     P[skit-strategy<br/>the business case] --> G
     G[skit-design-grill<br/>settle the decisions] --> A[skit-visual-design<br/>colour, layout, tokens]
     G --> T[skit-type<br/>typefaces]
@@ -56,6 +60,11 @@ Decisions you agree on during a grill are written to `design/decisions.md` in yo
 ## The skills
 
 Most skills start on their own when your request matches. The ones marked manual run only when you call them. In Claude Code, type `/skit:<skill-name>` (for example `/skit:skit-vibe`; the plugin name comes first, so it reads doubled); elsewhere, ask for the skill by name.
+
+### Start here
+
+**`skit-start`** is the front door. Tell it what you're working on and it names the skit skill that fits, or the short path of several, with one line on why each fits and how it starts. Then it asks whether to run the path; say yes and it loads each skill in order.
+> "Which skill do I need for a new settings screen?"
 
 ### Design
 
