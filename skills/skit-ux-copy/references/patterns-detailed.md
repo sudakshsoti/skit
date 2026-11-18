@@ -1,4 +1,4 @@
-# UX Text Patterns — Detailed Examples
+# UX Text Patterns: Detailed Examples
 
 This document provides extended examples of common UX text patterns applied across three different product voices: TAPP Transit (helpful, efficient, trustworthy), 'appee Social Game (playful, competitive, rewarding), and Sturgeon Club (sophisticated, exclusive, elegant).
 
@@ -132,7 +132,7 @@ Acts as instruction for one task
 
 ### Contextual Links
 
-Where two "Learn more" links appear on one page, suffix each with its object ("Learn more about exports", "Learn more about billing") — a bare "Learn more" breaks down once there is more than one on the page.
+Where two "Learn more" links appear on one page, suffix each with its object ("Learn more about exports", "Learn more about billing"). A bare "Learn more" breaks down once there is more than one on the page.
 
 **TAPP Transit**:
 

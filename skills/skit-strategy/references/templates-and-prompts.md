@@ -10,7 +10,7 @@ Use these structures as starting points. Adapt as needed.
 
 1. Strategic context (market forces, business priorities driving this work).
 2. User problem framing (who, what pain, what evidence).
-3. Design vision (what the experience should feel like — narrative, not features).
+3. Design vision (what the experience should feel like: narrative, not features).
 4. Design principles (3–5 actionable principles with "this means / this doesn't mean" specificity).
 5. Key design decisions and rationale.
 6. Success metrics (leading indicators + lagging outcomes).
@@ -27,16 +27,16 @@ Use these structures as starting points. Adapt as needed.
 ### Stakeholder presentation outline
 
 1. The hook (one sentence that frames why this matters NOW).
-2. The problem (user evidence + business impact — not just "users struggle with X").
+2. The problem (user evidence + business impact, not just "users struggle with X").
 3. The insight (the non-obvious thing your research/analysis revealed).
 4. The approach (what you're proposing and why this approach over alternatives).
 5. The evidence (prototype feedback, data, competitive comparison).
-6. The ask (what you need from this audience — be specific).
+6. The ask (what you need from this audience, be specific).
 
 ### Design decision log entry
 
 - **Decision:** [What was decided]
-- **Context:** [What prompted it — user feedback, business requirement, technical constraint]
+- **Context:** [What prompted it: user feedback, business requirement, technical constraint]
 - **Alternatives considered:** [What else was on the table]
 - **Rationale:** [Why this choice, connected to principles/strategy]
 - **Trade-offs accepted:** [What was given up]
@@ -45,7 +45,7 @@ Use these structures as starting points. Adapt as needed.
 ### Async communication template (Slack / Email)
 
 - **Context line:** One sentence telling the reader why they're getting this message.
-- **The thing:** What you're sharing / asking / proposing — upfront, not buried.
+- **The thing:** What you're sharing / asking / proposing, upfront, not buried.
 - **Supporting detail:** 2–3 key points, front-loaded with the most important.
 - **The ask:** Specific action needed, with timeline if relevant.
 - **Preemptive FAQ:** 1–2 anticipated questions, answered.
@@ -91,42 +91,42 @@ Reach for these when the conversation drills into a specific dimension.
 
 ## Worked examples (tone calibration)
 
-### Example — design critique (audit mode)
+### Example: design critique (audit mode)
 
 **User:** "Here's the updated audience segment builder. Three steps: define segment criteria, preview results, save segment. What do you think?"
 
 **Response:**
 
-The three-step structure is clean, and for the 80% case — a marketing manager building a standard segment — it'll feel fast. But I have a few pressure-test questions before I call it done.
+The three-step structure is clean, and for the 80% case (a marketing manager building a standard segment) it'll feel fast. But I have a few pressure-test questions before I call it done.
 
-First, what happens at Step 2 when the preview returns 47,000 contacts? That's a realistic number for a mid-size customer list. Does the user get a count, a sample, a distribution breakdown? Just a count is almost useless — they need to know if the segment _makes sense_ before saving. Consider a lightweight summary: top 5 traits, geography spread, engagement-score histogram. That's what differentiates "search results" from "audience intelligence."
+First, what happens at Step 2 when the preview returns 47,000 contacts? That's a realistic number for a mid-size customer list. Does the user get a count, a sample, a distribution breakdown? Just a count is almost useless. They need to know if the segment _makes sense_ before saving. Consider a lightweight summary: top 5 traits, geography spread, engagement-score histogram. That's what differentiates "search results" from "audience intelligence."
 
-Second, Step 1 to Step 2 is where the natural-language-to-query translation does its work. What's the confidence-communication strategy? If the translation is 85% confident, does the user know? A marketing manager won't inspect the underlying query, but they need _some_ signal that the system understood their intent. Maybe a plain-English restatement: "I understood: Contacts who opened 2+ emails in the last 30 days AND haven't purchased in 90 days. 47,231 contacts match." That's trust-building through transparency — your third design principle.
+Second, Step 1 to Step 2 is where the natural-language-to-query translation does its work. What's the confidence-communication strategy? If the translation is 85% confident, does the user know? A marketing manager won't inspect the underlying query, but they need _some_ signal that the system understood their intent. Maybe a plain-English restatement: "I understood: Contacts who opened 2+ emails in the last 30 days AND haven't purchased in 90 days. 47,231 contacts match." That's trust-building through transparency, your third design principle.
 
-Third, the "save segment" step — is this save-and-done, or save-and-hand-off? If the segment feeds a downstream campaign tool, the save action should make the handoff explicit: "Save and add to campaign" vs "Save as draft." The default matters here — what's the most common next action after segment creation?
+Third, the "save segment" step: is this save-and-done, or save-and-hand-off? If the segment feeds a downstream campaign tool, the save action should make the handoff explicit: "Save and add to campaign" vs "Save as draft." The default matters here. What's the most common next action after segment creation?
 
 What's the interaction cost of this flow? Clicks from intent to saved segment?
 
-### Example — async communication (design-process mode)
+### Example: async communication (design-process mode)
 
 **User:** "Need to send a Slack message to the PM about why we should prioritise report templates over the custom query builder. Help me draft it."
 
 **Response:**
 
-Here's a draft optimised for async clarity — front-loaded context, explicit ask, preemptive FAQ:
+Here's a draft optimised for async clarity, with front-loaded context, an explicit ask and a preemptive FAQ:
 
 ---
 
-**Subject: Report Templates vs Custom Query Builder — Recommendation for next sprint**
+**Subject: Report Templates vs Custom Query Builder: Recommendation for next sprint**
 
-Quick context: We're deciding between two features for the next sprint — report templates (pre-built analysis views) vs a custom query builder (power-user escape hatch). Sharing my recommendation below.
+Quick context: We're deciding between two features for the next sprint: report templates (pre-built analysis views) vs a custom query builder (power-user escape hatch). Sharing my recommendation below.
 
 **Recommendation: Templates first.**
 
 Three reasons:
 
-1. **Adoption velocity.** Templates let a typical user create a report in 2 clicks instead of assembling a query from scratch. For launch, we need the "it just works" story for the 80% case. The query builder serves the 5% power user — important, but not the launch blocker.
-2. **Trust scaffolding.** Templates are pre-validated — the logic is known-good. This builds user confidence before we ask them to trust an AI-assisted query from natural language. It's the "training wheels to bicycle" progression.
+1. **Adoption velocity.** Templates let a typical user create a report in 2 clicks instead of assembling a query from scratch. For launch, we need the "it just works" story for the 80% case. The query builder serves the 5% power user. Important, but not the launch blocker.
+2. **Trust scaffolding.** Templates are pre-validated, so the logic is known-good. This builds user confidence before we ask them to trust an AI-assisted query from natural language. It's the "training wheels to bicycle" progression.
 3. **Content leverage.** Every template becomes a reference implementation for the query-translation model to learn from, and a demonstration asset for sales. Double ROI.
 
 **The query builder matters, but not yet.** It's a Month 2–3 feature once we have active users generating custom queries that templates don't cover. Building it now is designing for a usage pattern that doesn't exist yet.
@@ -138,4 +138,4 @@ For launch, our power users are internal. We can give them direct data access as
 
 ---
 
-Adjust the tone if needed — this is calibrated for a PM who's data-driven and appreciates structured arguments.
+Adjust the tone if needed. This is calibrated for a PM who's data-driven and appreciates structured arguments.

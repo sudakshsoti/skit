@@ -13,11 +13,11 @@ The four rules below are what make it a design grill rather than a technical one
 
 Every node is a decision about what the user of this thing sees, feels or does: purpose, who it is for, how often they come back, what they must be able to do, what it sits beside, what one screen carries the weight, density, colour, type, motion, the states nobody demos.
 
-Architecture, data model, framework and implementation are out of scope. When a node genuinely needs one — a platform constraint that forecloses a visual option, say — settle just that fact and move on; do not let the tree drift into a technical grilling.
+Architecture, data model, framework and implementation are out of scope. When a node needs one (a platform constraint that forecloses a visual option, say), settle just that fact and move on; do not let the tree drift into a technical grilling.
 
 ## Look first, when there is something to look at
 
-Before round 1, look at the real thing. Screenshot the running app, read an image the user pasted, open a URL they gave you. Seeing it settles nodes for free — dark mode, density, type scale and containment are all visible — so the first round starts further out.
+Before round 1, look at the real thing. Screenshot the running app, read an image the user pasted, open a URL they gave you. Seeing it settles nodes for free (dark mode, density, type scale and containment are all visible), so the first round starts further out.
 
 When nothing exists yet, skip this and open with questions. Never ask the user to produce a screenshot of a thing that does not exist, and never fill the gap by generating a mockup.
 
@@ -25,7 +25,7 @@ When nothing exists yet, skip this and open with questions. Never ask the user t
 
 ## Decompose every reference
 
-A reference is one sentence carrying ten decisions. "Make it feel like Linear" left unhandled becomes eight silent inferences, which is the exact failure the `[inferred]` rule below exists to stop — arriving all at once.
+A reference is one sentence carrying ten decisions. "Make it feel like Linear" left unhandled becomes eight silent inferences, which is the exact failure the `[inferred]` rule below exists to stop, arriving all at once.
 
 Never fetch a reference's real values and copy them; that produces a clone the user never chose. Name what you think they meant, as separate attributes, and put each back as its own question with its own recommended answer: one question per attribute in the question tool, or numbered text like this:
 
@@ -85,6 +85,6 @@ Tag every line with where it came from:
 
 **Surface contradictions out loud.** When a new answer conflicts with a settled line, quote the line, say what conflicts, and ask which holds. Never silently overwrite, and never silently keep the old one:
 
-> Round 3 Q2 conflicts with a settled line: *"[stated] Dark by default, no light mode."* You have now said the marketing page should be light. Which holds — does the rule apply to the app only, or was it wrong?
+> Round 3 Q2 conflicts with a settled line: *"[stated] Dark by default, no light mode."* You have now said the marketing page should be light. Which holds? Does the rule apply to the app only, or was it wrong?
 
 Nothing in the file is frozen. Reopening a decision is a normal move: rewrite the line and flag what downstream of it now needs rechecking.

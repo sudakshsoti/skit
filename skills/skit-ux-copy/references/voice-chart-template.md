@@ -6,9 +6,9 @@ A voice chart helps establish consistent brand personality across all UX text. U
 
 A voice chart contains three key elements for each brand concept:
 
-1. **Concept** — A core brand principle or value
-2. **Voice Characteristics** — Adjectives describing how the concept manifests in writing
-3. **Examples** — Concrete do/don't pairs showing the voice in action
+1. **Concept**: A core brand principle or value
+2. **Voice Characteristics**: Adjectives describing how the concept manifests in writing
+3. **Examples**: Concrete do/don't pairs showing the voice in action
 
 ## Template
 
@@ -124,12 +124,12 @@ A voice chart contains three key elements for each brand concept:
 
 ## Tips for Creating Your Voice Chart
 
-1. **Base it on brand values** — Review mission, vision, values, and personality
-2. **Use 3-5 concepts** — Enough to guide, not so many you can't remember
-3. **Be specific with examples** — Show actual interface text, not abstract descriptions
-4. **Test against real scenarios** — Apply to buttons, errors, and notifications
-5. **Share with your team** — Voice only works if everyone uses it consistently
-6. **Update as you learn** — Refine based on user research and team feedback
+1. **Base it on brand values**: Review mission, vision, values, and personality
+2. **Use 3-5 concepts**: Enough to guide, not so many you can't remember
+3. **Be specific with examples**: Show actual interface text, not abstract descriptions
+4. **Test against real scenarios**: Apply to buttons, errors, and notifications
+5. **Share with your team**: Voice only works if everyone uses it consistently
+6. **Update as you learn**: Refine based on user research and team feedback
 
 ## Common Voice Characteristics
 

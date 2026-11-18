@@ -71,19 +71,19 @@ Use this template to write clear, actionable error messages that help users reco
 
 Before finalizing an error message, verify:
 
-- [ ] **Avoids blame** — No "invalid," "illegal," "wrong," "error"
-- [ ] **Calm and plain** — Zero playfulness, no empathy move
-- [ ] **Specific problem** — Not generic "something went wrong"
-- [ ] **Clear recovery** — Tell user exactly what to do
-- [ ] **Front-loaded** — Most important info first
-- [ ] **No "we"** — "Unable to save" not "We couldn't save" or "changes could not be saved"
-- [ ] **Human language** — Not system codes or technical jargon
+- [ ] **Avoids blame**: No "invalid," "illegal," "wrong," "error"
+- [ ] **Calm and plain**: Zero playfulness, no empathy move
+- [ ] **Specific problem**: Not generic "something went wrong"
+- [ ] **Clear recovery**: Tell user exactly what to do
+- [ ] **Front-loaded**: Most important info first
+- [ ] **No "we"**: "Unable to save" not "We couldn't save" or "changes could not be saved"
+- [ ] **Human language**: Not system codes or technical jargon
 
 ## Voice Variations by Context
 
 ### High-Stakes Error (Payment, Security, Data Loss)
 
-**Tone**: Serious, calm, plain — no empathy move, no exclamation
+**Tone**: Serious, calm, plain, with no empathy move and no exclamation
 
 ```
 Unable to process your payment. Your card wasn't charged. Check your card details and try again.

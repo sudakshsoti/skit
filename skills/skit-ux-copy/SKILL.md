@@ -11,14 +11,14 @@ Write clear, concise, user-centered interface copy (UX text/microcopy) for digit
 
 Run these steps for every string. For an audit, step 3 produces the findings and the Reporting section below is the exit criterion.
 
-1. **Understand context** — user goal, business objective, technical constraints, the user's emotional state.
-2. **Draft** — start from what you would say out loud, apply the matching pattern below, then voice and tone.
+1. **Understand context**: user goal, business objective, technical constraints, the user's emotional state.
+2. **Draft**: start from what you would say out loud, apply the matching pattern below, then voice and tone.
 3. **Edit against the four standards**
    - **Purposeful**: helps the user or the business reach a goal; focus on user benefits, not features; answer the question the user will have; use "you"; match the user's language and mental models.
    - **Concise**: every word has a job; front-load the important information; cut deadwood ("in order to" → "to", "due to the fact that" → "because", "at this point in time" → "now"); one adjective is usually enough; break dense text into scannable chunks.
    - **Conversational**: read it aloud and ask whether you would say it; keep the articles and prepositions; prefer active voice unless passive is clearer.
-   - **Clear**: specific verbs, one term per concept, no jargon or idioms. Match the length and reading-level targets in references/benchmarks.md. Never build a sentence from fragments around a variable ("You have " + n + " new messages") — word order changes per language; use one templated string with proper pluralization. Match the input device: "tap" on touch, "click" with a pointer, "select" when both are possible.
-4. **Check** — each string matches its pattern, and any table row cites `file:line`.
+   - **Clear**: specific verbs, one term per concept, no jargon or idioms. Match the length and reading-level targets in references/benchmarks.md. Never build a sentence from fragments around a variable ("You have " + n + " new messages"), because word order changes per language; use one templated string with proper pluralization. Match the input device: "tap" on touch, "click" with a pointer, "select" when both are possible.
+4. **Check**: each string matches its pattern, and any table row cites `file:line`.
 
 ## UX Text Patterns
 
@@ -38,16 +38,16 @@ Apply these common patterns for interface elements.
 - **Pattern**: `[Verb] [object]`
 - **Examples**: "Save changes", "Delete account", "View details"
 - **Avoid**: Generic labels like "OK", "Submit", "Click here"
-- **Confirmation dialogs**: the button repeats the consequence, so the dialog is answerable without reading the body — "Delete this project?" pairs with `Delete project` / `Cancel`, never a bare "Yes" and "No" on a consequential action
+- **Confirmation dialogs**: the button repeats the consequence, so the dialog is answerable without reading the body. "Delete this project?" pairs with `Delete project` / `Cancel`, never a bare "Yes" and "No" on a consequential action
 
 ### Error Messages
 
 - **Purpose**: Explain problem and provide solution
-- **Format**: Calm, plain, actionable — zero playfulness, no empathy phrasing
+- **Format**: Calm, plain, actionable, zero playfulness and no empathy phrasing
 - **Pattern**: `[What failed]. [Why/context]. [What to do].`
 - **Never**: technical codes ("Error 403"), blame ("invalid input"), robotic tone, dead ends, or vague causes ("Something went wrong")
 
-Four error types — validation (inline), system (modal/banner), blocking (full-screen), and permission — each with its own pattern, timing, and placement. See references/error-patterns.md for the full breakdown with examples.
+Four error types (validation inline, system modal/banner, blocking full-screen, and permission), each with its own pattern, timing, and placement. See references/error-patterns.md for the full breakdown with examples.
 
 ### Success Messages
 
@@ -69,7 +69,7 @@ Four error types — validation (inline), system (modal/banner), blocking (full-
 - **Instructions**: Verb-first, explain why information is needed
 - **Placeholder**: Use sparingly, only for standard inputs like "name@example.com"
 - **Helper text**: Static, on-demand, or automatic based on importance
-- **Toggles**: label for the ON state ("Send read receipts", not "Don't send read receipts") — a negative label makes the off state a double negative
+- **Toggles**: label for the ON state ("Send read receipts", not "Don't send read receipts"), because a negative label makes the off state a double negative
 
 ### Notifications
 
@@ -126,7 +126,7 @@ A tell is wording that reads as generated rather than written. Flag these in eve
 When auditing copy (step 3 above), report findings with a fixed scaffold:
 
 - **Severity**: `HIGH` misleads the user or hides how to recover from an error; `MEDIUM` breaks voice, terminology, or capitalization consistency; `LOW` is isolated wording polish.
-- **Findings table**: one row per root cause, listing every location it appears in — `Severity | Location | Before | After | Why` (`Location` is `path/to/file:line`; `Why` names the principle and the user impact).
+- **Findings table**: one row per root cause, listing every location it appears in. `Severity | Location | Before | After | Why` (`Location` is `path/to/file:line`; `Why` names the principle and the user impact).
 - **Verdict**: `Block` when any `HIGH` finding remains, `Approve` otherwise, leaving the rest in the table as work to do. `Approve` only the coverage you inspected.
 - **No findings**: state "No actionable writing findings"; report only real findings.
 

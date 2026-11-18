@@ -53,6 +53,12 @@ The project-local audit is Impeccable's detector, used through its command line 
 
 The audit is done when each scan has one result: clean, findings passed to the Critic, or `audit didn't run`. A scan that exits `1` is never reported as clean. Leave the detector's own ignore config alone: the Critic drops the findings a stated exception in `design/decisions.md` covers.
 
+## References
+
+Read one only when the task reaches its branch.
+
+- [references/pick-ui-library.md](references/pick-ui-library.md): choosing a library for a frontend job (charts, OTP inputs, command menus, toasts, drag and drop, virtualization).
+
 ## 4. Final report
 
 Finish with user-visible changes, screenshot paths, each audit scan's result (clean, the finding count, or `audit didn't run` and why), the Critic's verdict, changed files and any unresolved risk.

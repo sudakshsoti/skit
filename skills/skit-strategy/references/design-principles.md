@@ -9,7 +9,7 @@ Apply these when auditing or generating design work for any industry. In an audi
 3. **Trust through transparency.** Every number can be questioned. Show provenance, methodology, and data freshness. AI-generated outputs need confidence indicators, not just results.
 4. **Defaults are design decisions.** The default filter, sort, view shape 90% of user behaviour. Choose defaults that encode best-practice workflows, not engineering convenience.
 5. **Design for the handoff.** No tool exists in isolation. Every output becomes someone else's input. Design a report's outputs to be immediately actionable in the next tool downstream; design summaries that can drop into a board presentation.
-6. **Error cost awareness.** A false positive means unnecessary follow-up (cost + annoyance). A false negative means a missed opportunity (potential harm to the business or the customer). Design error states, validation, and confirmation patterns with this asymmetry in mind.
+6. **Error cost awareness.** A false positive means unnecessary follow-up (cost + annoyance). A false negative means a missed opportunity (potential harm to the business or the customer). Shape error states, validation, and confirmation patterns around this asymmetry, not one uniform error treatment.
 7. **Time-to-insight as the critical metric.** The value of an analytics tool is how quickly the user goes from question to actionable insight. Every click, page load, and unnecessary confirmation dialog is time stolen from the user's actual job.
 
 ## Information architecture
@@ -23,5 +23,5 @@ Apply these when auditing or generating design work for any industry. In an audi
 
 - Reduce interaction cost relentlessly; fewer clicks for frequent tasks.
 - Make reversible actions easy, irreversible actions deliberate.
-- Prefer inline editing and direct manipulation over modal dialogs.
+- Prefer inline editing and direct manipulation over modal dialogs where the workflow permits.
 - Design loading states that communicate progress, not just "please wait."

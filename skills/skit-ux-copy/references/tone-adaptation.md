@@ -53,7 +53,7 @@ Voice stays constant; tone adapts to the user's situation. Use these matrices to
 - Never blame user
 - Explain what happened
 - Provide clear next step
-- No "we" — it reads as deflection ("Unable to load content", not "We're having trouble loading this content")
+- No "we": it reads as deflection ("Unable to load content", not "We're having trouble loading this content")
 
 **Success messages**: Positive, specific, encouraging
 

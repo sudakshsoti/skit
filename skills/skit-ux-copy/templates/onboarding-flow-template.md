@@ -4,12 +4,12 @@ Use this template to design clear, encouraging onboarding experiences that help 
 
 ## Onboarding Principles
 
-1. **Show value early** — Help users succeed in their first session
-2. **Progressive disclosure** — Don't overwhelm with all features at once
-3. **Optional whenever possible** — Let users skip and explore
-4. **Celebrate small wins** — Acknowledge each completed step
-5. **Be concise** — Users want to start using the product, not read about it
-6. **Fix the vocabulary** — "Get started" to enter, one of "Continue" or "Next" held for the whole flow to advance, "Done" to finish. Never alternate synonyms; it makes users wonder whether the buttons do different things
+1. **Show value early**: Help users succeed in their first session
+2. **Progressive disclosure**: Don't overwhelm with all features at once
+3. **Optional whenever possible**: Let users skip and explore
+4. **Celebrate small wins**: Acknowledge each completed step
+5. **Be concise**: Users want to start using the product, not read about it
+6. **Fix the vocabulary**: "Get started" to enter, one of "Continue" or "Next" held for the whole flow to advance, "Done" to finish. Never alternate synonyms; it makes users wonder whether the buttons do different things
 
 ## Core Flow Structure
 
@@ -155,13 +155,13 @@ Each step should answer:
 
 For each step in your onboarding flow, verify:
 
-- [ ] **Single focus** — One action or concept per step
-- [ ] **Clear value** — User knows why this matters
-- [ ] **Actionable** — User knows exactly what to do
-- [ ] **Skipable** — Optional steps can be skipped
-- [ ] **Progress visible** — User knows how many steps remain
-- [ ] **Concise** — Body text under 30 words
-- [ ] **Appropriate tone** — Encouraging without being patronizing
+- [ ] **Single focus**: One action or concept per step
+- [ ] **Clear value**: User knows why this matters
+- [ ] **Actionable**: User knows exactly what to do
+- [ ] **Skipable**: Optional steps can be skipped
+- [ ] **Progress visible**: User knows how many steps remain
+- [ ] **Concise**: Body text under 30 words
+- [ ] **Appropriate tone**: Encouraging without being patronizing
 
 ## Content Patterns by Step Type
 
