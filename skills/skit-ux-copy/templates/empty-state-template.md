@@ -75,13 +75,13 @@ Use this template to guide users when content is absent and help them take actio
 
 Before finalizing an empty state, verify:
 
-- [ ] **Clear context** — User knows what's empty and why
-- [ ] **Actionable** — Provides specific next step
-- [ ] **Appropriate tone** — Matches emotional context
-- [ ] **Value-focused** — Shows benefit of taking action
-- [ ] **Concise** — Brief enough to scan quickly
-- [ ] **Avoids negativity** — No "nothing here" or "you have no..."
-- [ ] **No persistent information** — Never park information that matters beyond this moment in an empty state; it disappears the moment content exists
+- [ ] **Clear context**: User knows what's empty and why
+- [ ] **Actionable**: Provides specific next step
+- [ ] **Appropriate tone**: Matches emotional context
+- [ ] **Value-focused**: Shows benefit of taking action
+- [ ] **Concise**: Brief enough to scan quickly
+- [ ] **Avoids negativity**: No "nothing here" or "you have no..."
+- [ ] **No persistent information**: Never park information that matters beyond this moment in an empty state; it disappears the moment content exists
 
 ## Content Patterns by Type
 

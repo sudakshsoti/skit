@@ -1,6 +1,11 @@
 ---
 name: skit-visual-design
-description: "Use for visual direction in a product UI: colour, hierarchy, responsive layout, CSS tokens, `@theme`, and OKLCH, while first classifying the surface intent. Not for a token or colour tweak inside an existing system, typography-primary work (skit-type), behaviour and states or UI review (skit-interface), or building the change (skit-vibe)."
+description: >-
+  Set the visual direction of a product UI or brand page: colour in OKLCH, hierarchy, responsive layout and CSS tokens, after first working out what kind of surface it is.
+
+  Triggers: "make it look better", "this looks like every AI app", "it looks generic", "pick the colours", "dark mode looks wrong", "too many borders and shadows", "the page feels crowded", "design a landing page", "write the style guide".
+
+  Not for a token or colour tweak inside an existing system, typography-primary work (skit-type), behaviour and states or UI review (skit-interface), or building the change (skit-vibe).
 ---
 
 # Visual design
@@ -66,8 +71,8 @@ something true, not merely decorate.
 
 Begin reference, utility and dashboard surfaces with a solid background. Add
 texture, grids, patterns or translucent layering only when they encode information
-or come directly from the subject. Never place a repeating pattern beneath dense
-text, diagrams, tables or hairline rules. Test the design with the decoration
+or come directly from the subject. Keep repeating patterns out from beneath dense
+text, diagrams, tables or hairline rules, where they fight the content for contrast. Test the design with the decoration
 removed; if comprehension and identity do not suffer, leave it removed. During
 visual review, check whether backgrounds compete with text, decorative rules
 compete with structural rules, nested panels multiply boundaries, colour lacks
@@ -131,7 +136,7 @@ for radius, shadow-as-border and icon mechanics, `colour-systems.md` for ramp
 formation, token grammar and APCA thresholds, `layout-mechanics.md` for
 spacing and adaptivity measurements, and `motion-values.md` for motion
 defaults. When a dedicated motion skill is installed (for example Emil
-Kowalski's `emil-animations`), load it for motion craft first;
+Kowalski's free animation skills), load it for motion craft first;
 `motion-values.md` then overrides its numbers where the two disagree.
 
 **Type:** pairing logic, hierarchy architecture, optical-size selection, weight
@@ -151,8 +156,8 @@ heavy" is not.
 
 ## 3. Existing systems and boundaries
 
-Read the project's tokens first. Reuse them. Never hardcode a colour or measure
-where the project has a variable, and never paste a competing token system beside
+Read the project's tokens first. Reuse them. Use the project's variable wherever one exists
+rather than a hardcoded colour or measure, because a hardcoded value silently drifts when the token changes, and never paste a competing token system beside
 an existing one. In Tailwind v4, prefer `@theme` and custom properties over
 utility-class soup. When extending shadcn/ui, retain and extend its token names
 such as `--background`, `--foreground`, `--primary` and `--ring`.

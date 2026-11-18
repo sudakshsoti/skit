@@ -1,11 +1,16 @@
 ---
 name: skit-vibe
-description: "Use to build any interface change (tweak, new screen, risky UI/data change): it owns building UI, choosing process depth and running build-review. Not for non-UI work, or for reviewing or critiquing an existing UI (skit-interface); visual direction and type come from skit-visual-design and skit-type."
+description: >-
+  Build a screen or UI change, decide how much process it needs, and look at the rendered result before calling it done. It owns building UI.
+
+  Triggers: "build this screen", "make this change", "tweak the spacing", "build it from the design", "check it on phone and desktop", "which component library", "let's plan this page first".
+
+  Not for non-UI work, or for reviewing or critiquing an existing UI (skit-interface); visual direction and type come from skit-visual-design and skit-type.
 ---
 
 # Vibe
 
-This skill is a workflow, not an aesthetic. It decides how much process an interface task needs and holds the build to a rendered, reviewed result. Visual language, tokens and review thresholds come from `skit-interface`, `skit-visual-design`, `skit-type` and `skit-ux-copy`. Do not duplicate their guidance here.
+This skill is a workflow, not an aesthetic. It decides how much process an interface task needs and holds the build to a rendered, reviewed result. Visual language, tokens and review thresholds come from `skit-interface`, `skit-visual-design`, `skit-type` and `skit-ux-copy`. Point to them rather than restating their guidance, so each rule has one owner and cannot drift between copies.
 
 ## 1. Pick the route
 
@@ -52,6 +57,12 @@ The project-local audit is Impeccable's detector, used through its command line 
 3. Read each exit code. `0` is clean and `2` means findings; both hand the full JSON from standard output to the Critic, advisory entries included. `1` means at least one target could not be scanned, even when other targets produced findings: report that scan as `audit didn't run` with the reason from standard error, and still pass on any JSON it printed. When npx says the package is missing, every scan is `audit didn't run`, and the build carries on.
 
 The audit is done when each scan has one result: clean, findings passed to the Critic, or `audit didn't run`. A scan that exits `1` is never reported as clean. Leave the detector's own ignore config alone: the Critic drops the findings a stated exception in `design/decisions.md` covers.
+
+## References
+
+Read one only when the task reaches its branch.
+
+- [references/pick-ui-library.md](references/pick-ui-library.md): choosing a library for a frontend job (charts, OTP inputs, command menus, toasts, drag and drop, virtualization).
 
 ## 4. Final report
 

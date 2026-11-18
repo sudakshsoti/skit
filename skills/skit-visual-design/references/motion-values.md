@@ -1,6 +1,6 @@
 # Motion values
 
-When a dedicated motion skill is installed (for example `emil-animations`), it owns motion craft, including whether to animate at all, and the values below override its numbers. Without one, start from the baseline and use the values below as written.
+When a dedicated motion skill is installed (for example Emil Kowalski's free animation skills), it owns motion craft, including whether to animate at all, and the values below override its numbers. Without one, start from the baseline and use the values below as written.
 
 ## Baseline
 

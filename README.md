@@ -35,10 +35,14 @@ Download this repo, zip any skill folder from `skills/` (for example `skills/ski
 
 ## How the skills fit together
 
+**Where to start:** not sure which skill you need? Ask "where do I start?" or "which skill do I need for this?" and `skit-start` names the skill, or the short path of several, then offers to run it.
+
 You don't have to use them in order; each one works alone. But for a new screen they line up like this:
 
 ```mermaid
 flowchart LR
+    ST[skit-start<br/>which skill?] -.-> P
+    ST -.-> G
     P[skit-strategy<br/>the business case] --> G
     G[skit-design-grill<br/>settle the decisions] --> A[skit-visual-design<br/>colour, layout, tokens]
     G --> T[skit-type<br/>typefaces]
@@ -56,6 +60,11 @@ Decisions you agree on during a grill are written to `design/decisions.md` in yo
 ## The skills
 
 Most skills start on their own when your request matches. The ones marked manual run only when you call them. In Claude Code, type `/skit:<skill-name>` (for example `/skit:skit-vibe`; the plugin name comes first, so it reads doubled); elsewhere, ask for the skill by name.
+
+### Start here
+
+**`skit-start`** is the front door. Tell it what you're working on and it names the skit skill that fits, or the short path of several, with one line on why each fits and how it starts. Then it asks whether to run the path; say yes and it loads each skill in order.
+> "Which skill do I need for a new settings screen?"
 
 ### Design
 
@@ -77,7 +86,7 @@ Most skills start on their own when your request matches. The ones marked manual
 **`skit-ux-copy`** writes and audits interface text, from button labels and errors to onboarding, notifications and tone of voice. It ships with templates for the common cases.
 > "Rewrite the error messages on the payment screen"
 
-**`skit-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. If Impeccable's detector is installed in the project, it runs the detector's command line as an automatic check and hands the findings to the reviewer; if not, the report says the audit didn't run. In Claude Code it hands the build to the `skit-builder` agent and the review to `skit-critic`. Without those agents it does the same work in the main session and a fresh subagent, using the critic rules it carries in `references/critic.md`.
+**`skit-vibe`** is the build loop for any interface change. It sizes the change first, so a colour tweak gets a quick pass and a new screen gets a plan, then builds, renders the result in a browser and reviews the screenshot before calling it done. If Impeccable's detector is installed in the project, it runs the detector's command line as an automatic check and hands the findings to the reviewer; if not, the report says the audit didn't run. In Claude Code it hands the build to the `skit-builder` agent and the review to `skit-critic`. Without those agents it does the same work in the main session and a fresh subagent, using the critic rules it carries in `references/critic.md`. For choosing a frontend library (charts, toasts, drag and drop and so on) it carries a curated list folded from Emil Kowalski's free `pick-ui-library` skill (MIT).
 > "Add a filter bar to the orders table."
 
 **`skit-polish`** (manual) is a finishing pass for a page that is right in direction but still feels unfinished. It checks the small details, such as hover states that shift the layout, missing press feedback and straight quotes in UI text, and points to the skill that owns each rule rather than repeating it.

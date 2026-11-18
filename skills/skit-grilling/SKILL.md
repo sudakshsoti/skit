@@ -1,6 +1,11 @@
 ---
 name: skit-grilling
-description: "Use to stress-test a plan, decision, or idea by interviewing the user in rounds until nothing is left assumed, or when the user says 'grill me'. Asks through the harness's question tool when it has one. For visual or behavioural interface decisions, or 'grill me on the design', use skit-design-grill."
+description: >-
+  Interview the user round by round until nothing in a plan, decision or idea is a guess.
+
+  Triggers: "grill me", "poke holes in this", "what am I missing", "challenge this", "ask me questions until it's clear", "is this a good idea".
+
+  Not for visual or behavioural interface decisions, or "grill me on the design" (skit-design-grill).
 ---
 
 # Grilling
@@ -49,6 +54,10 @@ Decisions belong to the user. Put each one to them, even when you are confident,
 ❓ **Q2** - ...
 ```
 
+## Docs as you go
+
+When the user asks to grill with docs, or the decisions name the project's domain terms, sharpen each term and update the project's glossary and any decision records inline as decisions land, not at the end.
+
 ## Done
 
-The grill is done when the frontier is empty: every branch visited, nothing silently assumed. Then summarise the shared understanding (the decisions, what was ruled out, and what happens next) and ask the user to confirm it. Do not start acting on the plan until they do.
+The grill is done when the frontier is empty: every branch visited, nothing silently assumed. Then summarise the shared understanding (the decisions, what was ruled out, and what happens next) and ask the user to confirm it. Start acting on the plan only once they confirm, because an unconfirmed summary can still hide a wrong turn.

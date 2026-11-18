@@ -1,6 +1,6 @@
 ---
 name: skit-maintainability-review
-description: "Use to review AI-generated frontend code for human maintainability: duplication, abstractions, naming, structure, silent failures, cross-session drift. Not for reviewing a plan before building (skit-self-review) or for diagnosing a defect."
+description: "Review AI-written frontend code for whether a person could maintain it: duplication, needless abstractions, vague names, silent failures, drift between sessions."
 user-invocable: true
 disable-model-invocation: true
 ---

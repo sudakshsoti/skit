@@ -143,37 +143,39 @@ Use this checklist to evaluate UX text quality. Rate each criterion 0-10.
 
 ## Scoring Guide
 
-**9-10**: Excellent — Best practice example
-**7-8**: Good — Minor improvements possible
-**5-6**: Adequate — Notable issues to address
-**3-4**: Needs work — Significant problems
-**0-2**: Poor — Major revision required
+**9-10**: Excellent. Best practice example
+**7-8**: Good. Minor improvements possible
+**5-6**: Adequate. Notable issues to address
+**3-4**: Needs work. Significant problems
+**0-2**: Poor. Major revision required
 
 ## How to Use This Checklist
 
-1. **Review individual pieces** — Evaluate specific UI strings, messages, or flows
-2. **Audit entire experiences** — Score major screens or user journeys
-3. **Compare options** — Rate different versions to choose the best
-4. **Track improvements** — Measure before and after edits
-5. **Build rationale** — Use scores to explain writing decisions
-6. **Focus efforts** — Identify lowest-scoring areas to improve first
+1. **Review individual pieces**: Evaluate specific UI strings, messages, or flows
+2. **Audit entire experiences**: Score major screens or user journeys
+3. **Compare options**: Rate different versions to choose the best
+4. **Track improvements**: Measure before and after edits
+5. **Build rationale**: Use scores to explain writing decisions
+6. **Focus efforts**: Identify lowest-scoring areas to improve first
 
 ## Example Evaluation
 
+*Illustrative: it shows the standard, not a shape to copy. Let the input decide the structure and wording of each real output.*
+
 **Text**: "An error occurred while processing your request. Please try again."
 
-**Concise**: 6/10 — Wordy, could be "Unable to process your request. Try again."
-**Purposeful**: 4/10 — Doesn't help user fix the problem or explain what happened
-**Conversational**: 5/10 — Somewhat robotic, "an error occurred" is system-speak
-**Clear**: 5/10 — Vague, doesn't specify what error or why
+**Concise**: 6/10. Wordy, could be "Unable to process your request. Try again."
+**Purposeful**: 4/10. Doesn't help user fix the problem or explain what happened
+**Conversational**: 5/10. Somewhat robotic, "an error occurred" is system-speak
+**Clear**: 5/10. Vague, doesn't specify what error or why
 
-**Overall**: 5/10 — Adequate but needs significant improvement
+**Overall**: 5/10. Adequate but needs significant improvement
 
 **Improved**: "Unable to save your changes. Check your connection and try again."
 
-**Concise**: 9/10 — Brief, direct, no wasted words
-**Purposeful**: 8/10 — Suggests likely cause (connection) and next step
-**Conversational**: 9/10 — Natural, human phrasing
-**Clear**: 9/10 — Specific about what failed and what to do
+**Concise**: 9/10. Brief, direct, no wasted words
+**Purposeful**: 8/10. Suggests likely cause (connection) and next step
+**Conversational**: 9/10. Natural, human phrasing
+**Clear**: 9/10. Specific about what failed and what to do
 
-**Overall**: 9/10 — Excellent
+**Overall**: 9/10. Excellent

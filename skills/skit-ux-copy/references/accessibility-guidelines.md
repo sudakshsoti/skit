@@ -1,6 +1,6 @@
 # Accessibility Guidelines for UX Writing
 
-Writing accessible content ensures all users—including those using assistive technology, experiencing cognitive differences, or facing situational limitations—can understand and interact with your product.
+Writing accessible content ensures all users (including those using assistive technology, experiencing cognitive differences, or facing situational limitations) can understand and interact with your product.
 
 ## Core Principles
 
@@ -296,7 +296,7 @@ Provide multiple ways to perceive important information:
 
 ### Don't Assemble Sentences From Fragments
 
-Never build a sentence from fragments around a variable (`"You have " + n + " new messages"`) — word order changes per language and breaks in translation. Use one full templated string with proper pluralization per locale (`"You have {n, plural, one {1 new message} other {# new messages}}"`).
+Never build a sentence from fragments around a variable (`"You have " + n + " new messages"`), because word order changes per language and breaks in translation. Use one full templated string with proper pluralization per locale (`"You have {n, plural, one {1 new message} other {# new messages}}"`).
 
 ### Avoid Culturally-Specific References
 
@@ -436,4 +436,4 @@ Users experiencing stress, frustration, or urgency have reduced cognitive capaci
 
 ---
 
-**Remember**: Accessibility isn't a feature—it's a baseline requirement. Writing accessibly makes your product better for everyone, not just users with disabilities.
+**Remember**: Accessibility isn't a feature. It's a baseline requirement. Writing accessibly makes your product better for everyone, not just users with disabilities.

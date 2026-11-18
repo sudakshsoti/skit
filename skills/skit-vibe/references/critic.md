@@ -31,4 +31,4 @@ Return, in order:
 - Coverage, named per rule 5.
 - Exactly one verdict on its own line: `ship` or `fix`. A `fix` lists at most five prioritised changes.
 
-Do not edit files, trigger a repair, or claim checks you did not perform.
+Stay read-only: do not edit files or trigger a repair, so the verdict stays independent of the build. Report only checks you performed, because a claimed check that never ran turns a `ship` into a guess.

@@ -12,9 +12,18 @@ Rules:
 - Every backticked `skit-*` name in a skill or agent resolves to a skill or
   agent in this repo, so nothing points at a skill a user won't have.
 - Relative links and `references/...` paths inside a skill resolve.
-- No file contains a personal detail from BLOCKLIST, or harness-local syntax
-  that only works on the author's machine.
+- No file contains a personal detail from BLOCKLIST, a mention of a paid skill
+  set, or harness-local syntax that only works on the author's machine.
+- No file names a skill from the owner's private repo, such as `design-build`
+  or (plan-grill): a port must rename it to the skit equivalent, because a
+  skit user does not have it.
 - README.md documents every skill on disk.
+- Each automatic skill's description has a `Triggers:` paragraph of quoted
+  phrases people actually say, because that is the text the agent matches a
+  request against. A manual skill (`disable-model-invocation`) is exempt.
+- `skit-start/references/map.md` has one entry for every other skill, with the
+  mode it really has (auto or manual), and names no skill that does not exist,
+  so the front door never sends a user to a missing or mislabelled skill.
 - `skit-ux-copy` and `skit-handoff` start automatically: other skills hand work
   to them, and a manual-only skill cannot be loaded by the model.
 - Each job has one named owner, and the descriptions agree: `skit-vibe` and
@@ -59,10 +68,21 @@ BLOCKLIST = [
     r"/Users/",
     r"\bagent-config\b",
     r"\b[0-9a-f]{40}\b",  # commit hashes
+    r"\baiforui\b",  # paid skill set; its content must never ship here
+    r"\bemil-[a-z]",  # names from the paid set
+    r"\bhomelab\b",
+    r"1Password",
+    r"\bT3 Code\b",
 ]
 BLOCK_RE = [re.compile(p) for p in BLOCKLIST]
+TRIGGERS_RE = re.compile(r'^Triggers: "[^"]+"', re.M)
 NAME_RE = re.compile(r"^skit-[a-z0-9]+(-[a-z0-9]+)*$")
 REF_RE = re.compile(r"`(skit-[a-z0-9-]+)`")
+# A backticked or parenthesised name with one of the private repo's job prefixes.
+PRIVATE_PREFIXES = ("design", "code", "plan", "agent", "write", "session", "git", "ops", "personal")
+PRIVATE_RE = re.compile(
+    r"(?:`|\()((?:" + "|".join(PRIVATE_PREFIXES) + r")-[a-z0-9]+(?:-[a-z0-9]+)*)(?:`|\)|,|;)"
+)
 PATH_RE = re.compile(r"`((?:\.\./)*(?:references|templates|examples|agents)/[A-Za-z0-9_./-]+\.md)`")
 
 
@@ -71,10 +91,24 @@ def frontmatter(text: str) -> dict[str, str]:
     if not m:
         return {}
     out: dict[str, str] = {}
+    blocks: dict[str, list[str]] = {}
+    key = None
     for line in m.group(1).splitlines():
         if ":" in line and not line.startswith(" "):
             k, v = line.split(":", 1)
-            out[k.strip()] = v.strip().strip('"')
+            key, v = k.strip(), v.strip()
+            # `>-` or `>` opens a folded block scalar: the indented lines below are the value.
+            if v in (">-", ">"):
+                blocks[key] = []
+                out[key] = ""
+            else:
+                out[key] = v.strip('"')
+        elif key in blocks and (line.startswith(" ") or not line.strip()):
+            blocks[key].append(line.strip())
+    for k, lines in blocks.items():
+        # Fold as YAML does: lines in a paragraph join with a space, a blank line is a newline.
+        paras = "\n".join(lines).strip("\n").split("\n\n")
+        out[k] = "\n".join(" ".join(x.split("\n")) for x in paras)
     return out
 
 
@@ -109,6 +143,39 @@ def lint_moves(vibe: Path, root: Path, skills: set[str]) -> list[str]:
     return problems
 
 
+MAP_ENTRY_RE = re.compile(r"^- \*\*(skit-[a-z0-9-]+)\*\* \((auto|manual)\):")
+MAP_NAME_RE = re.compile(r"\*\*(skit-[a-z0-9-]+)\*\*")
+
+
+def lint_map(root: Path, skills: list[str]) -> list[str]:
+    """The front door's map lists every other skill once, with its real mode."""
+    f = root / "skills" / "skit-start" / "references" / "map.md"
+    rel = f.relative_to(root)
+    if not f.exists():
+        return [f"{rel}: missing (skit-start reads it to pick a skill)"]
+    problems: list[str] = []
+    text = f.read_text()
+    entries: dict[str, list[str]] = {}
+    for line in text.splitlines():
+        m = MAP_ENTRY_RE.match(line)
+        if m:
+            entries.setdefault(m.group(1), []).append(m.group(2))
+    for name in MAP_NAME_RE.findall(text):
+        if name not in skills:
+            problems.append(f"{rel}: names {name}, which is not a skill in this repo")
+    for name in skills:
+        if name == "skit-start":
+            continue
+        modes = entries.get(name, [])
+        if len(modes) != 1:
+            problems.append(f"{rel}: {name} must have exactly one entry, found {len(modes)}")
+            continue
+        manual = "disable-model-invocation" in frontmatter((root / "skills" / name / "SKILL.md").read_text())
+        if modes[0] != ("manual" if manual else "auto"):
+            problems.append(f"{rel}: {name} is listed as {modes[0]} but is {'manual' if manual else 'auto'}")
+    return problems
+
+
 def lint(root: Path) -> list[str]:
     SKILLS = root / "skills"
     AGENTS = root / "agents"
@@ -134,6 +201,8 @@ def lint(root: Path) -> list[str]:
             problems.append(f"{f.relative_to(root)}: missing description")
         elif len(desc) > 1024:
             problems.append(f"{f.relative_to(root)}: description is {len(desc)} chars (max 1024)")
+        if desc and "disable-model-invocation" not in fm and not TRIGGERS_RE.search(desc):
+            problems.append(f"{f.relative_to(root)}: automatic skill needs a `Triggers:` paragraph of quoted phrases in its description")
 
     for name in agents:
         f = AGENTS / f"{name}.md"
@@ -150,6 +219,8 @@ def lint(root: Path) -> list[str]:
             for rx in BLOCK_RE:
                 if rx.search(line):
                     problems.append(f"{rel}:{i}: blocked pattern {rx.pattern!r}")
+            for ref in PRIVATE_RE.findall(line):
+                problems.append(f"{rel}:{i}: `{ref}` is a private skill name; use the skit- equivalent")
             for ref in REF_RE.findall(line):
                 if ref not in known:
                     problems.append(f"{rel}:{i}: `{ref}` is not a skill or agent in this repo")
@@ -179,6 +250,8 @@ def lint(root: Path) -> list[str]:
         for i, line in enumerate(f.read_text().splitlines(), 1):
             if AGENT_PATH_RE.search(line):
                 problems.append(f"{f.relative_to(root)}:{i}: points into the agents folder, which a skills-only install lacks")
+
+    problems.extend(lint_map(root, skills))
 
     vibe = SKILLS / "skit-vibe" / "SKILL.md"
     if vibe.exists():
