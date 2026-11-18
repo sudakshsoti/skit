@@ -74,6 +74,30 @@ class LintTest(unittest.TestCase):
         f.write_text(f.read_text().replace("name: skit-bro", "name: bro"))
         self.assertTrue(any("bad skill name" in p and "'bro'" in p for p in self.problems()))
 
+    def append(self, name, text):
+        f = self.tmp / "skills" / name / "SKILL.md"
+        f.write_text(f.read_text() + text)
+
+    def test_lint_rejects_a_mention_of_the_paid_set(self):
+        self.append("skit-type", "\nBorrowed from aiforui.\n")
+        self.assertTrue(any("aiforui" in p for p in self.problems()))
+
+    def test_lint_rejects_a_paid_skill_name(self):
+        self.append("skit-type", "\nSee `emil-typography`.\n")
+        self.assertTrue(any("emil-" in p for p in self.problems()))
+
+    def test_lint_rejects_a_backticked_private_skill_name(self):
+        self.append("skit-vibe", "\nHand off to `design-build`.\n")
+        self.assertTrue(any("`design-build` is a private skill name" in p for p in self.problems()))
+
+    def test_lint_rejects_a_parenthesised_private_skill_name(self):
+        self.append("skit-vibe", "\nNot for plans (plan-grill).\n")
+        self.assertTrue(any("`plan-grill` is a private skill name" in p for p in self.problems()))
+
+    def test_lint_allows_a_prefix_word_in_prose(self):
+        self.append("skit-vibe", "\nAn example (design-process mode) of a code-heavy screen.\n")
+        self.assertFalse(any("private skill name" in p for p in self.problems()))
+
     def test_plugin_and_marketplace_are_named_skit(self):
         import json
         plugin = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text())

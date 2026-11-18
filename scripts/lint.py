@@ -12,8 +12,11 @@ Rules:
 - Every backticked `skit-*` name in a skill or agent resolves to a skill or
   agent in this repo, so nothing points at a skill a user won't have.
 - Relative links and `references/...` paths inside a skill resolve.
-- No file contains a personal detail from BLOCKLIST, or harness-local syntax
-  that only works on the author's machine.
+- No file contains a personal detail from BLOCKLIST, a mention of a paid skill
+  set, or harness-local syntax that only works on the author's machine.
+- No file names a skill from the owner's private repo, such as `design-build`
+  or (plan-grill): a port must rename it to the skit equivalent, because a
+  skit user does not have it.
 - README.md documents every skill on disk.
 - `skit-ux-copy` and `skit-handoff` start automatically: other skills hand work
   to them, and a manual-only skill cannot be loaded by the model.
@@ -59,10 +62,20 @@ BLOCKLIST = [
     r"/Users/",
     r"\bagent-config\b",
     r"\b[0-9a-f]{40}\b",  # commit hashes
+    r"\baiforui\b",  # paid skill set; its content must never ship here
+    r"\bemil-[a-z]",  # names from the paid set
+    r"\bhomelab\b",
+    r"1Password",
+    r"\bT3 Code\b",
 ]
 BLOCK_RE = [re.compile(p) for p in BLOCKLIST]
 NAME_RE = re.compile(r"^skit-[a-z0-9]+(-[a-z0-9]+)*$")
 REF_RE = re.compile(r"`(skit-[a-z0-9-]+)`")
+# A backticked or parenthesised name with one of the private repo's job prefixes.
+PRIVATE_PREFIXES = ("design", "code", "plan", "agent", "write", "session", "git", "ops", "personal")
+PRIVATE_RE = re.compile(
+    r"(?:`|\()((?:" + "|".join(PRIVATE_PREFIXES) + r")-[a-z0-9]+(?:-[a-z0-9]+)*)(?:`|\)|,)"
+)
 PATH_RE = re.compile(r"`((?:\.\./)*(?:references|templates|examples|agents)/[A-Za-z0-9_./-]+\.md)`")
 
 
@@ -150,6 +163,8 @@ def lint(root: Path) -> list[str]:
             for rx in BLOCK_RE:
                 if rx.search(line):
                     problems.append(f"{rel}:{i}: blocked pattern {rx.pattern!r}")
+            for ref in PRIVATE_RE.findall(line):
+                problems.append(f"{rel}:{i}: `{ref}` is a private skill name; use the skit- equivalent")
             for ref in REF_RE.findall(line):
                 if ref not in known:
                     problems.append(f"{rel}:{i}: `{ref}` is not a skill or agent in this repo")

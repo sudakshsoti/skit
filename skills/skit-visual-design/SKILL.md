@@ -131,7 +131,7 @@ for radius, shadow-as-border and icon mechanics, `colour-systems.md` for ramp
 formation, token grammar and APCA thresholds, `layout-mechanics.md` for
 spacing and adaptivity measurements, and `motion-values.md` for motion
 defaults. When a dedicated motion skill is installed (for example Emil
-Kowalski's `emil-animations`), load it for motion craft first;
+Kowalski's free animation skills), load it for motion craft first;
 `motion-values.md` then overrides its numbers where the two disagree.
 
 **Type:** pairing logic, hierarchy architecture, optical-size selection, weight
