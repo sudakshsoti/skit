@@ -81,7 +81,7 @@ REF_RE = re.compile(r"`(skit-[a-z0-9-]+)`")
 # A backticked or parenthesised name with one of the private repo's job prefixes.
 PRIVATE_PREFIXES = ("design", "code", "plan", "agent", "write", "session", "git", "ops", "personal")
 PRIVATE_RE = re.compile(
-    r"(?:`|\()((?:" + "|".join(PRIVATE_PREFIXES) + r")-[a-z0-9]+(?:-[a-z0-9]+)*)(?:`|\)|,)"
+    r"(?:`|\()((?:" + "|".join(PRIVATE_PREFIXES) + r")-[a-z0-9]+(?:-[a-z0-9]+)*)(?:`|\)|,|;)"
 )
 PATH_RE = re.compile(r"`((?:\.\./)*(?:references|templates|examples|agents)/[A-Za-z0-9_./-]+\.md)`")
 
@@ -91,15 +91,24 @@ def frontmatter(text: str) -> dict[str, str]:
     if not m:
         return {}
     out: dict[str, str] = {}
+    blocks: dict[str, list[str]] = {}
     key = None
     for line in m.group(1).splitlines():
         if ":" in line and not line.startswith(" "):
             k, v = line.split(":", 1)
             key, v = k.strip(), v.strip()
-            # `>-` or `|` opens a block scalar: the indented lines below are the value.
-            out[key] = "" if v in (">-", ">", "|", "|-") else v.strip('"')
-        elif key and line.startswith(" "):
-            out[key] = (out[key] + "\n" + line.strip()).strip("\n")
+            # `>-` or `>` opens a folded block scalar: the indented lines below are the value.
+            if v in (">-", ">"):
+                blocks[key] = []
+                out[key] = ""
+            else:
+                out[key] = v.strip('"')
+        elif key in blocks and (line.startswith(" ") or not line.strip()):
+            blocks[key].append(line.strip())
+    for k, lines in blocks.items():
+        # Fold as YAML does: lines in a paragraph join with a space, a blank line is a newline.
+        paras = "\n".join(lines).strip("\n").split("\n\n")
+        out[k] = "\n".join(" ".join(x.split("\n")) for x in paras)
     return out
 
 
@@ -242,8 +251,7 @@ def lint(root: Path) -> list[str]:
             if AGENT_PATH_RE.search(line):
                 problems.append(f"{f.relative_to(root)}:{i}: points into the agents folder, which a skills-only install lacks")
 
-    if (SKILLS / "skit-start").exists():
-        problems.extend(lint_map(root, skills))
+    problems.extend(lint_map(root, skills))
 
     vibe = SKILLS / "skit-vibe" / "SKILL.md"
     if vibe.exists():

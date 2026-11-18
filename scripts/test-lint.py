@@ -94,6 +94,10 @@ class LintTest(unittest.TestCase):
         self.append("skit-vibe", "\nNot for plans (plan-grill).\n")
         self.assertTrue(any("`plan-grill` is a private skill name" in p for p in self.problems()))
 
+    def test_lint_rejects_a_private_name_before_a_semicolon(self):
+        self.append("skit-vibe", "\nNot for plans (plan-grill; see below).\n")
+        self.assertTrue(any("`plan-grill` is a private skill name" in p for p in self.problems()))
+
     def test_lint_allows_a_prefix_word_in_prose(self):
         self.append("skit-vibe", "\nAn example (design-process mode) of a code-heavy screen.\n")
         self.assertFalse(any("private skill name" in p for p in self.problems()))
@@ -103,6 +107,14 @@ class LintTest(unittest.TestCase):
         desc = lint.frontmatter(text)["description"]
         self.assertTrue(desc.startswith("Pick, pair"))
         self.assertIn("(skit-ux-copy)", desc)
+
+    def test_lint_folds_a_block_description_like_yaml(self):
+        text = "---\nname: x\ndescription: >-\n  One\n  two.\n\n  Triggers: \"a\".\n---\n"
+        self.assertEqual(lint.frontmatter(text)["description"], 'One two.\nTriggers: "a".')
+
+    def test_lint_requires_the_map(self):
+        (self.tmp / "skills" / "skit-start" / "references" / "map.md").unlink()
+        self.assertTrue(any("map.md: missing" in p for p in self.problems()))
 
     def test_lint_rejects_an_automatic_skill_without_triggers(self):
         f = self.tmp / "skills" / "skit-type" / "SKILL.md"
