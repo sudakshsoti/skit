@@ -18,6 +18,9 @@ Rules:
   or (plan-grill): a port must rename it to the skit equivalent, because a
   skit user does not have it.
 - README.md documents every skill on disk.
+- Each automatic skill's description has a `Triggers:` paragraph of quoted
+  phrases people actually say, because that is the text the agent matches a
+  request against. A manual skill (`disable-model-invocation`) is exempt.
 - `skit-ux-copy` and `skit-handoff` start automatically: other skills hand work
   to them, and a manual-only skill cannot be loaded by the model.
 - Each job has one named owner, and the descriptions agree: `skit-vibe` and
@@ -69,6 +72,7 @@ BLOCKLIST = [
     r"\bT3 Code\b",
 ]
 BLOCK_RE = [re.compile(p) for p in BLOCKLIST]
+TRIGGERS_RE = re.compile(r'^Triggers: "[^"]+"', re.M)
 NAME_RE = re.compile(r"^skit-[a-z0-9]+(-[a-z0-9]+)*$")
 REF_RE = re.compile(r"`(skit-[a-z0-9-]+)`")
 # A backticked or parenthesised name with one of the private repo's job prefixes.
@@ -84,10 +88,15 @@ def frontmatter(text: str) -> dict[str, str]:
     if not m:
         return {}
     out: dict[str, str] = {}
+    key = None
     for line in m.group(1).splitlines():
         if ":" in line and not line.startswith(" "):
             k, v = line.split(":", 1)
-            out[k.strip()] = v.strip().strip('"')
+            key, v = k.strip(), v.strip()
+            # `>-` or `|` opens a block scalar: the indented lines below are the value.
+            out[key] = "" if v in (">-", ">", "|", "|-") else v.strip('"')
+        elif key and line.startswith(" "):
+            out[key] = (out[key] + "\n" + line.strip()).strip("\n")
     return out
 
 
@@ -147,6 +156,8 @@ def lint(root: Path) -> list[str]:
             problems.append(f"{f.relative_to(root)}: missing description")
         elif len(desc) > 1024:
             problems.append(f"{f.relative_to(root)}: description is {len(desc)} chars (max 1024)")
+        if desc and "disable-model-invocation" not in fm and not TRIGGERS_RE.search(desc):
+            problems.append(f"{f.relative_to(root)}: automatic skill needs a `Triggers:` paragraph of quoted phrases in its description")
 
     for name in agents:
         f = AGENTS / f"{name}.md"

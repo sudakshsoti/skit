@@ -1,6 +1,11 @@
 ---
 name: skit-visual-design
-description: "Use for visual direction in a product UI: colour, hierarchy, responsive layout, CSS tokens, `@theme`, and OKLCH, while first classifying the surface intent. Not for a token or colour tweak inside an existing system, typography-primary work (skit-type), behaviour and states or UI review (skit-interface), or building the change (skit-vibe)."
+description: >-
+  Set the visual direction of a product UI or brand page: colour in OKLCH, hierarchy, responsive layout and CSS tokens, after first working out what kind of surface it is.
+
+  Triggers: "make it look better", "this looks like every AI app", "it looks generic", "pick the colours", "dark mode looks wrong", "too many borders and shadows", "the page feels crowded", "design a landing page", "write the style guide".
+
+  Not for a token or colour tweak inside an existing system, typography-primary work (skit-type), behaviour and states or UI review (skit-interface), or building the change (skit-vibe).
 ---
 
 # Visual design

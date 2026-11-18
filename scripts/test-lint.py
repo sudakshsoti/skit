@@ -98,6 +98,23 @@ class LintTest(unittest.TestCase):
         self.append("skit-vibe", "\nAn example (design-process mode) of a code-heavy screen.\n")
         self.assertFalse(any("private skill name" in p for p in self.problems()))
 
+    def test_lint_reads_a_block_scalar_description(self):
+        text = (REPO / "skills" / "skit-type" / "SKILL.md").read_text()
+        desc = lint.frontmatter(text)["description"]
+        self.assertTrue(desc.startswith("Pick, pair"))
+        self.assertIn("(skit-ux-copy)", desc)
+
+    def test_lint_rejects_an_automatic_skill_without_triggers(self):
+        f = self.tmp / "skills" / "skit-type" / "SKILL.md"
+        f.write_text(f.read_text().replace("Triggers:", "Phrases:", 1))
+        self.assertTrue(any("skit-type" in p and "Triggers:" in p for p in self.problems()))
+
+    def test_lint_lets_a_manual_skill_skip_triggers(self):
+        text = (REPO / "skills" / "skit-bro" / "SKILL.md").read_text()
+        self.assertIn("disable-model-invocation", text)
+        self.assertNotIn("Triggers:", text)
+        self.assertFalse(any("skit-bro" in p for p in self.problems()))
+
     def test_plugin_and_marketplace_are_named_skit(self):
         import json
         plugin = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text())

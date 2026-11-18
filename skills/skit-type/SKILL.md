@@ -1,6 +1,11 @@
 ---
 name: skit-type
-description: "Use for typeface and font choice, pairing, OpenType features, font loading, and language or script coverage across screen, print, or brand work. Not for general UI styling (skit-visual-design), interaction structure (skit-interface), or copy (skit-ux-copy)."
+description: >-
+  Pick, pair and size fonts, set OpenType features, and fix how type loads and renders in any language or script.
+
+  Triggers: "which font", "what pairs with this", "something that isn't Inter", "the type sizes feel random", "the headline wraps badly on mobile", "the Devanagari text looks broken", "the numbers don't line up", "the page jumps when the font loads", "can we use this font on the web".
+
+  Not for general UI styling (skit-visual-design), interaction structure (skit-interface), or copy (skit-ux-copy).
 ---
 
 # Type

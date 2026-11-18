@@ -1,6 +1,11 @@
 ---
 name: skit-strategy
-description: "Use for product and UX strategy: business models, positioning, journey maps, teardowns, stakeholder narratives. Not for visual direction (skit-visual-design), interface states (skit-interface) or screen design decisions (skit-design-grill)."
+description: >-
+  Spar on product and UX strategy: the business model, positioning, journey maps, teardowns and the notes that carry a decision to stakeholders.
+
+  Triggers: "make the business case", "journey map", "why does this competitor's thing work", "pitch this to leadership", "write a note my stakeholder will read", "how should we position this".
+
+  Not for visual direction (skit-visual-design), interface states (skit-interface) or screen design decisions (skit-design-grill).
 ---
 
 # Product strategy

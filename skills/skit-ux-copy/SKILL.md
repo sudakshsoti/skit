@@ -1,6 +1,11 @@
 ---
 name: skit-ux-copy
-description: "Use for writing, editing, or auditing interface microcopy: controls, forms, errors, onboarding, empty states, notifications, voice, tone. Not for long-form prose, essays, or visual and type decisions."
+description: >-
+  Write, rewrite or check the words on buttons, labels, errors, empty states, onboarding and notifications.
+
+  Triggers: "what should this button say", "this error reads like a robot wrote it", "write the empty state", "the onboarding is too wordy", "check the tone", "fix the copy", "rewrite this label".
+
+  Not for long-form prose or essays, or visual and type decisions.
 ---
 
 # UX copy

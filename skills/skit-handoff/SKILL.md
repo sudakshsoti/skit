@@ -1,6 +1,11 @@
 ---
 name: skit-handoff
-description: "Use when ending or pausing a session to write a structured handoff of decisions, progress, changes, and next steps for the next session. Not for issue-tracker upkeep or personal task capture."
+description: >-
+  Write a structured handoff of decisions, progress, changed files and next steps, so the next session can pick up where this one stopped.
+
+  Triggers: "write a handoff", "I'm stopping for the day", "save where we are", "summarise this for the next session", "I'll pick this up tomorrow".
+
+  Not for issue-tracker upkeep or personal task capture.
 ---
 
 # Handoff

@@ -1,6 +1,11 @@
 ---
 name: skit-design-grill
-description: "Use to settle visual and behavioural interface decisions by a round-based interview, recording agreed design decisions and excluding implementation architecture; also for 'grill me on the design'. For a plan, decision or idea that is not an interface, use skit-grilling."
+description: >-
+  Interview the user round by round until it is decided how a screen looks and behaves, and record each decision.
+
+  Triggers: "grill me on the design", "ask me questions about this screen", "help me decide how this should look", "make it like Linear", "what haven't I thought about", "let's settle dark mode first".
+
+  Not for a plan, decision or idea that is not an interface (skit-grilling).
 ---
 
 # Design grill

@@ -1,6 +1,11 @@
 ---
 name: skit-grilling
-description: "Use to stress-test a plan, decision, or idea by interviewing the user in rounds until nothing is left assumed, or when the user says 'grill me'. Asks through the harness's question tool when it has one. For visual or behavioural interface decisions, or 'grill me on the design', use skit-design-grill."
+description: >-
+  Interview the user round by round until nothing in a plan, decision or idea is a guess.
+
+  Triggers: "grill me", "poke holes in this", "what am I missing", "challenge this", "ask me questions until it's clear", "is this a good idea".
+
+  Not for visual or behavioural interface decisions, or "grill me on the design" (skit-design-grill).
 ---
 
 # Grilling

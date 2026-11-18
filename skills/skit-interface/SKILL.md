@@ -1,6 +1,11 @@
 ---
 name: skit-interface
-description: "Use to review interactive controls, forms, lists, dashboards, settings, documentation, or non-happy-path screen states: structure, labels, focus, hit areas, field states. It owns UI review. Not for building a UI change (skit-vibe), marketing or brand pages, type scale (skit-type), or visual styling (skit-visual-design)."
+description: >-
+  Review a screen, form or UI diff for the things that break: unclear labels, missing states, focus, hit areas, field states, messy real data. It owns UI review.
+
+  Triggers: "review this screen", "what states am I missing", "what breaks with 40 rows", "what's wrong with this form", "the submit button fires twice", "is this ready to ship", "review what the agent built".
+
+  Not for building a UI change (skit-vibe), marketing or brand pages, type scale (skit-type), or visual styling (skit-visual-design).
 ---
 
 # skit-interface

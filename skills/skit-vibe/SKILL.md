@@ -1,6 +1,11 @@
 ---
 name: skit-vibe
-description: "Use to build any interface change (tweak, new screen, risky UI/data change): it owns building UI, choosing process depth and running build-review. Not for non-UI work, or for reviewing or critiquing an existing UI (skit-interface); visual direction and type come from skit-visual-design and skit-type."
+description: >-
+  Build a screen or UI change, decide how much process it needs, and look at the rendered result before calling it done. It owns building UI.
+
+  Triggers: "build this screen", "make this change", "tweak the spacing", "build it from the design", "check it on phone and desktop", "which component library", "let's plan this page first".
+
+  Not for non-UI work, or for reviewing or critiquing an existing UI (skit-interface); visual direction and type come from skit-visual-design and skit-type.
 ---
 
 # Vibe
