@@ -160,6 +160,8 @@ Use this checklist to evaluate UX text quality. Rate each criterion 0-10.
 
 ## Example Evaluation
 
+*Illustrative: it shows the standard, not a shape to copy. Let the input decide the structure and wording of each real output.*
+
 **Text**: "An error occurred while processing your request. Please try again."
 
 **Concise**: 6/10. Wordy, could be "Unable to process your request. Try again."

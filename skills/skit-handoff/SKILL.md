@@ -157,6 +157,8 @@ re-explanation.
 
 ## Example Handoff
 
+*Illustrative: it shows the standard, not a shape to copy. Let the input decide the structure and wording of each real output.*
+
 ```markdown
 # Session Handoff: Auth System Implementation
 

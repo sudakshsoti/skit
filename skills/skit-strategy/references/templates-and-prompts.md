@@ -91,6 +91,8 @@ Reach for these when the conversation drills into a specific dimension.
 
 ## Worked examples (tone calibration)
 
+*Illustrative: it shows the standard, not a shape to copy. Let the input decide the structure and wording of each real output.*
+
 ### Example: design critique (audit mode)
 
 **User:** "Here's the updated audience segment builder. Three steps: define segment criteria, preview results, save segment. What do you think?"

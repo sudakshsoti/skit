@@ -2,6 +2,8 @@
 
 This document shows actual UX text transformations with scoring against the four quality standards: Purposeful, Concise, Conversational, and Clear.
 
+*Illustrative: it shows the standard, not a shape to copy. Let the input decide the structure and wording of each real output.*
+
 ## E-commerce Checkout Error
 
 ### Before

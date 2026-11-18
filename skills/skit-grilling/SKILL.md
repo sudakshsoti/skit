@@ -60,4 +60,4 @@ When the user asks to grill with docs, or the decisions name the project's domai
 
 ## Done
 
-The grill is done when the frontier is empty: every branch visited, nothing silently assumed. Then summarise the shared understanding (the decisions, what was ruled out, and what happens next) and ask the user to confirm it. Do not start acting on the plan until they do.
+The grill is done when the frontier is empty: every branch visited, nothing silently assumed. Then summarise the shared understanding (the decisions, what was ruled out, and what happens next) and ask the user to confirm it. Start acting on the plan only once they confirm, because an unconfirmed summary can still hide a wrong turn.

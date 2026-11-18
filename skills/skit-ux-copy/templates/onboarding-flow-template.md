@@ -229,6 +229,8 @@ Examples:
 
 ## Multi-Screen Flow Example
 
+*Illustrative: it shows the standard, not a shape to copy. Let the input decide the structure and wording of each real output.*
+
 ### Screen 1: Welcome
 
 ```

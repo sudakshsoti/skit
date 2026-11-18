@@ -71,8 +71,8 @@ something true, not merely decorate.
 
 Begin reference, utility and dashboard surfaces with a solid background. Add
 texture, grids, patterns or translucent layering only when they encode information
-or come directly from the subject. Never place a repeating pattern beneath dense
-text, diagrams, tables or hairline rules. Test the design with the decoration
+or come directly from the subject. Keep repeating patterns out from beneath dense
+text, diagrams, tables or hairline rules, where they fight the content for contrast. Test the design with the decoration
 removed; if comprehension and identity do not suffer, leave it removed. During
 visual review, check whether backgrounds compete with text, decorative rules
 compete with structural rules, nested panels multiply boundaries, colour lacks
@@ -156,8 +156,8 @@ heavy" is not.
 
 ## 3. Existing systems and boundaries
 
-Read the project's tokens first. Reuse them. Never hardcode a colour or measure
-where the project has a variable, and never paste a competing token system beside
+Read the project's tokens first. Reuse them. Use the project's variable wherever one exists
+rather than a hardcoded colour or measure, because a hardcoded value silently drifts when the token changes, and never paste a competing token system beside
 an existing one. In Tailwind v4, prefer `@theme` and custom properties over
 utility-class soup. When extending shadcn/ui, retain and extend its token names
 such as `--background`, `--foreground`, `--primary` and `--ring`.

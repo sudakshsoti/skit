@@ -10,7 +10,7 @@ description: >-
 
 # Vibe
 
-This skill is a workflow, not an aesthetic. It decides how much process an interface task needs and holds the build to a rendered, reviewed result. Visual language, tokens and review thresholds come from `skit-interface`, `skit-visual-design`, `skit-type` and `skit-ux-copy`. Do not duplicate their guidance here.
+This skill is a workflow, not an aesthetic. It decides how much process an interface task needs and holds the build to a rendered, reviewed result. Visual language, tokens and review thresholds come from `skit-interface`, `skit-visual-design`, `skit-type` and `skit-ux-copy`. Point to them rather than restating their guidance, so each rule has one owner and cannot drift between copies.
 
 ## 1. Pick the route
 

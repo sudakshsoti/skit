@@ -68,6 +68,8 @@ A voice chart contains three key elements for each brand concept:
 
 ## Example: TAPP Transit System
 
+*Illustrative: it shows the standard, not a shape to copy. Let the input decide the structure and wording of each real output.*
+
 ### Concept 1: Helpful
 
 **Voice characteristics**: Friendly, supportive, clear

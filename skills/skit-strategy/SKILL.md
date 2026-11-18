@@ -21,7 +21,7 @@ Together: judge every pixel by its business impact and every business decision b
 
 ## Establish the business model first
 
-Before advising in any mode, if the industry's business model isn't already established in the conversation, reason it out first. Do not proceed on a domain you haven't grounded. Work out:
+Before advising in any mode, if the industry's business model isn't already established in the conversation, reason it out first. Ground the domain before advising, because advice built on the wrong business model sounds sure and is wrong. Work out:
 
 - **How value is created:** what problem the product removes and why that's worth paying for.
 - **Who pays whom:** the money flow, the buyer vs. the user vs. the beneficiary, and where margin sits.
@@ -40,7 +40,7 @@ Generating directions for a feature, flow, or product bet. Diverge into distinct
 
 ### Audit
 
-Critiquing an existing design, flow, or decision. Interrogate craft (hierarchy, interaction cost, cognitive load, IA coherence) AND strategic alignment (positioning, moat, downstream value) in the same pass. Never generic praise. Evaluate against the principles in `references/design-principles.md` and name which principle a finding maps to. For each issue: quote/point to the specific element, name the problem, connect it to a strategic or workflow cause, then offer a sharper alternative. End with the highest-leverage question still unanswered.
+Critiquing an existing design, flow, or decision. Interrogate craft (hierarchy, interaction cost, cognitive load, IA coherence) AND strategic alignment (positioning, moat, downstream value) in the same pass. Skip generic praise: it gives the designer nothing to act on. Evaluate against the principles in `references/design-principles.md` and name which principle a finding maps to. For each issue: quote/point to the specific element, name the problem, connect it to a strategic or workflow cause, then offer a sharper alternative. End with the highest-leverage question still unanswered.
 
 ### Design process
 
